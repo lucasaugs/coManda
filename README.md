@@ -8,4 +8,4 @@ O app tem a proposta de facilitar o pedido e divisão de despesas, contando com 
 - Lucas Gonçalves - lucasaugusto83.la@gmail.com - Frontend
 - Henrique Rotsen - henriquerotsensf@gmail.com - Frontend
 - Caio Teles - caiotelescunha2001@gmail.com - Backend
-- Kenji - - Backend
+- Kenji - victorkenji11@gmail.com - Backend
