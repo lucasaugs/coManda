@@ -28,6 +28,7 @@ O app tem a proposta de facilitar o pedido e divisão de despesas, contando com 
 - Como dono do restaurante gostaria de editar o cardápio do meu restaurante.
 
 ### Backlog da Sprint
+
 1 - Como usuário, eu gostaria de poder me logar na plataforma
   * Criar endpoint para cadastro de usuários
     + Definir e declarar tabelas, criar endpoints para inserir novos usuários
