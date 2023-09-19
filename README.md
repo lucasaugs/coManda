@@ -26,3 +26,46 @@ O app tem a proposta de facilitar o pedido e divisão de despesas, contando com 
 - Como usuário gostaria de poder re-dividir um produto já adicionado.
 - Como usuário eu gostaria de adicionar pessoas à comanda.
 - Como dono do restaurante gostaria de editar o cardápio do meu restaurante.
+
+###Backlog da Sprint
+1 - Como usuário, eu gostaria de poder me logar na plataforma
+  * Criar endpoint para cadastro de usuários
+    + Definir e declarar tabelas, criar endpoints para inserir novos usuários
+  * Criar endpoint de login de usuários
+    + Definir funções de autenticação do usuário
+  * Criar telas de cadastro e login de usuário, conforme protótipo do figma
+
+2 - Como usuário dono de restaurante, eu gostaria de poder cadastrar meu estabelecimento no aplicativo.
+  * Criar endpoint para cadastro de restaurantes
+    + Definir e declarar tabelas, criar endpoints para inserir novos restaurantes
+  * Criar telas de cadastro e login de estabelecimentos, conforme protótipo do figma
+
+3 - Como usuário dono de restaurante, eu gostaria de poder cadastrar o cardápio do meu restaurante no aplicativo.
+  * Criar endpoint para cadastro de itens
+    + Definir e declarar tabelas, criar endpoints para inserir novos itens
+  * Adicionar telas e navegação para inserção de itens
+
+4 - Como usuário eu gostaria de gerar uma comanda.
+  * Criar endpoint para geração de comandas
+    + Definir e declarar tabelas, criar endpoints para inserir novas comandas
+  * Criar a navegação no frontend
+
+5 - Como usuário eu gostaria de adicionar pessoas à comanda.
+  * Criar endpoint para adição de pessoas
+    + Definir os tabelas e referências para os dados dos usuários a serem adicionados, criar endpoints para inserir novas pessoas a uma mesma comanda
+  * Criar telas para cadastro de novas pessoas na comanda.
+
+6 - Como dono do restaurante gostaria de editar o cardápio do meu restaurante.
+  * Criar comunicação para editar itens do cardápio
+    + Definir referências para as tabelas que contém os cardápios do restaurante que quer editar
+  * Criar a navegação no frontend
+
+7 - Como usuário eu gostaria de poder dividir o preço do produto que está sendo pedido por um dos integrantes da minha comanda
+  * Criar comunicação para gerenciamento de itens
+    + Definir referências à tabelas dos grupos e itens na comanda de cada e criar endpoints para selecionar uma outra pessoa e dividir um item com ela.
+  * Criar telas para navegação no front e confirmação
+
+8 - Como usuário eu gostaria de poder visualizar os produtos que já estão na comanda bem como o total que eu terei que pagar até o momento.
+  * Criar comunicação à lista/tabela de itens
+    + Definir referências para as tabelas de itens de cada usuário e retornar a soma dos valores
+  * Criar tela no frontend, para cada usuário e sua comanda, e do grupo.
