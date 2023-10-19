@@ -1,30 +1,50 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import BoxInput from './components/BoxInput.vue'
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Hello World" />
+  <html>
+    <div class="tela">
+      <a href="#" target="_blank">
+        <img src="./assets/logo-no-background.png" class="logo" alt="coManda logo" />
+      </a>
+      <BoxInput msg="Email" />
+      <BoxInput msg="Senha" />
+      <p class="options">
+        Esqueci minha senha
+      </p>
+      <p class="options">
+        Não possuí uma conta? <br class="cadastro">Cadastre-se<br>
+      </p>
+      <hr>
+      <p class="options">
+        Deseja cadastrar seu restaurante no nosso App? <br class="cadastro">Cadastre-se<br>
+      </p>
+    </div>
+  </html>
 </template>
 
 <style scoped>
+html {
+  background-color: #516AA0;
+  width: max-content;
+  height: max-content;
+}
+
 .logo {
-  height: 6em;
+  width: 413px;
+  height: 128px;
+  flex-shrink: 0;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #D4AD6F);
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.cadastro {
+  color: #0D1B2A;
 }
 </style>
