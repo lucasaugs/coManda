@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import BoxInput from './components/BoxInput.vue'
 </script>
 
 <template>
   <html>
+    <div>
+      <router-link to="/"> HOME </router-link>
+      <router-link to="/login"> LOGIN </router-link>
+    </div>
     <div class="tela">
+      <router-view></router-view>
       <a href="#" target="_blank">
         <img src="./assets/logo-no-background.png" class="logo" alt="coManda logo" />
       </a>
