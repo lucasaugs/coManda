@@ -1,11 +1,11 @@
 import casoDeUso from "../../shared/casoDeUso.ts";
-import colecaoDeUsuarios from "../data/colecaoUsuarios.ts";
+import colecaoDeUsuarios from "../model/colecaoDeUsuarios.ts";
 import provedorCripto from "../model/provedorCripto.ts";
 import usuario from "../model/usuario.ts";
 
 export default class registrarUsuario implements casoDeUso<Required<usuario>,void> {
     
-    constructor(private provedorCripto: provedorCripto) {
+    constructor(private colecao: colecaoDeUsuarios,private provedorCripto: provedorCripto) {
 
     }
     
@@ -14,8 +14,7 @@ export default class registrarUsuario implements casoDeUso<Required<usuario>,voi
         
         const senhaCriptografada = await this.provedorCripto.criptografar(usuario.senha!);
         const usuarioCriado = { ...usuario, senha: senhaCriptografada };
-        const colecao = new colecaoDeUsuarios();
-        await colecao.adicionar(usuarioCriado);
+        await this.colecao.adicionar(usuarioCriado);
         
     }
 }

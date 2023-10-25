@@ -1,4 +1,4 @@
-import provedorCripto from "../usuario/model/provedorCripto.ts";
+import provedorCripto from "../dominio/usuario/model/provedorCripto.ts";
 
 export default class inverterCripto implements provedorCripto {
     async criptografar(senha: string): Promise<string> {

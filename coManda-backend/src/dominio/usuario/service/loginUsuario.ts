@@ -1,6 +1,6 @@
 import casoDeUso from "../../shared/casoDeUso.ts";
-import inverterCripto from "../../temp/inverterCripto.ts";
-import colecaoDeUsuarios from "../data/colecaoUsuarios.ts";
+import colecaoDeUsuarios from "../model/colecaoDeUsuarios.ts";
+import provedorCripto from "../model/provedorCripto.ts";
 import usuario from "../model/usuario.ts";
 
 export type loginUsuarioEntrada = {
@@ -11,16 +11,19 @@ export type loginUsuarioEntrada = {
 
 export default class loginUsuario implements casoDeUso<loginUsuarioEntrada,usuario | null>{
 
+    constructor(private colecao: colecaoDeUsuarios,private provedorCripto: provedorCripto) {
+
+    }
+
+
     async executa(entrada: loginUsuarioEntrada): Promise<usuario> {
-        const colecao = new colecaoDeUsuarios();
-        const usuario = await colecao.obterPorEmail(entrada.email);
+        const usuario = await this.colecao.obterPorEmail(entrada.email);
 
         if(!usuario) {
             throw new Error('Usuário não encontrado');
         }
 
-        const provedorCripto = new inverterCripto();
-        const iguais = await provedorCripto.comparar(entrada.senha, usuario.senha!);
+        const iguais = await this.provedorCripto.comparar(entrada.senha, usuario.senha!);
 
         if(!iguais) {
             throw new Error('Senha incorreta');
