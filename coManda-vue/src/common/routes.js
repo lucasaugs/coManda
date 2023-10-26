@@ -1,4 +1,4 @@
-import TelaInicial from '../components/TelaInicial.vue'
+import TelaInicial from '../views/TelaInicial.vue'
 import LoginPage from '../views/LoginPage.vue'
 
 export const routes = [

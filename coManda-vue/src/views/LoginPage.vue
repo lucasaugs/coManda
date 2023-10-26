@@ -3,8 +3,10 @@
 </script>
 
 <template>
-    <h5>
-        LOGIN
-    </h5>
-    <BoxInput msg="Email" />
+    <div class="container justify-content-center">
+        <h5>
+            LOGIN
+        </h5>
+        <BoxInput msg="Email" />
+    </div>
 </template>
