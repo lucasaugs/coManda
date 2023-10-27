@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TelaInicial from "../src/views/TelaInicial.vue"
+import LoginPage from "../src/views/LoginPage.vue"
 </script>
 
 <template>
