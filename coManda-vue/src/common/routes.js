@@ -2,6 +2,8 @@ import LandingPage from '../views/LandingPage.vue'
 import LoginPage from '../views/LoginPage.vue'
 import ClientSingUpPage from '../views/ClientSingUpPage.vue'
 import RestaurantSingUpPage from '../views/RestaurantSingUpPage.vue' 
+import PdfSingUpPage from '../views/PdfSingUpPage.vue' 
+import RecoverPage from '../views/RecoverPage.vue' 
 
 export const routes = [
     {
@@ -23,5 +25,15 @@ export const routes = [
         path: '/restaurant-signUp',
         component:RestaurantSingUpPage,
         name: 'Restaurant Sing Up'
+    },
+    {
+        path: '/restaurant-signUp/menu',
+        component:PdfSingUpPage,
+        name: 'Restaurant Menu'
+    },
+    {
+        path: '/recover',
+        component:RecoverPage,
+        name: 'Recover Password'
     }
 ]
