@@ -16,6 +16,83 @@ model users {
   email     String   @unique
   password  String
   cpf      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  //relations
+  sheetClient sheetClient?
+  //users 1-* splitters
+  splitters splitters[]
 }
+
+model restaurants {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  cpf      String   @unique
+  password  String
+  cep      String
+  street     String
+  neighborhood  String
+
+  //relations
+  //restaurant 1-* sheetClient
+  sheetClients sheetClient[]
+  //restaurant 1-* items
+  items item[]
+}
+
+model sheetClient {
+  id        Int      @id @default(autoincrement())
+  total  Int @default(0)
+  isOpen Boolean @default(true)
+  //relations
+  //user 1-1 sheetClient
+  userId  Int     @unique
+  user    users   @relation(fields: [userId], references: [id])
+  //restaurant 1-* sheetClient
+  restaurantId Int     @unique
+  restaurant restaurants   @relation(fields: [restaurantId], references: [id])
+  //sheetClient 1-* sheetItems
+  sheetItems sheetItems[]
+}
+
+model item {
+  id        Int      @id @default(autoincrement())
+  name String
+  price Int
+  picture String
+  //relations
+  //restaurant 1-* items
+  restaurantId Int     @unique
+  restaurant restaurants   @relation(fields: [restaurantId], references: [id])
+  //items 1-* sheetItems
+  sheetItems sheetItems[]
+}
+
+model sheetItems{
+  id        Int      @id @default(autoincrement())
+  sheetId Int     @unique
+  splittersNum Int
+  //relations
+  //sheetClient 1-* sheetItems
+  sheetClientId Int @unique
+  sheetClient sheetClient @relation(fields: [sheetClientId], references: [id])
+  //items 1-* sheetItems
+  itemId Int     @unique
+  item item @relation(fields: [itemId], references: [id])
+  //sheetItems 1-* splitters
+  splitters splitters[]
+}
+
+//tabela intermediaria para criar relacionamento N x M
+model splitters{
+  //users
+  splitUserId Int
+  user users @relation(fields: [splitUserId], references: [id])
+
+  //sheetItems
+  sheetItemsId Int
+  sheetItems sheetItems @relation(fields: [sheetItemsId], references: [id])
+  
+  @@id([splitUserId, sheetItemsId])
+
+}
+
