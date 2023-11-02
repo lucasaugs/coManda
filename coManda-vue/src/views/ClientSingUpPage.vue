@@ -39,7 +39,7 @@ defineProps<{ msg: string }>();
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em #d4ad6f);
+  filter: drop-shadow(0 0 2em var(--bg-beige));
 }
 </style>
     

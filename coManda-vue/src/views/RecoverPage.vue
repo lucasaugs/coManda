@@ -12,7 +12,7 @@ defineProps<{ msg: string }>();
       </div>
     </router-link>
 
-    <p style="font-size: 50px; color: #e0e1dd; margin-top: 25px;">Ah não você esqueceu sua senha, mas não se preocupe!</p>
+    <p style="font-size: 50px; color: #e0e1dd; margin-top: 25px;">Ah não! Parece que você esqueceu sua senha, mas não se preocupe!</p>
     <p style="font-size: 35px; color: #e0e1dd; margin-top: 25px;">Insira seu email para recuperarmos a sua conta.</p>
 
     <div class="w-50 mx-auto">

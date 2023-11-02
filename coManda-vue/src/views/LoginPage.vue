@@ -5,7 +5,7 @@ defineProps<{ msg: string }>();
 </script>
 
 <template>
-  <div class="tela container">
+  <div class="container p-4">
     <div class="w-50 mx-auto">
       <img src="../assets/logo-no-background.png" alt="coManda Logo" class="w-75 logo" />
     </div>
@@ -14,13 +14,15 @@ defineProps<{ msg: string }>();
         type="email" />
       <BoxInput :msg="'Senha'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
         type="password" />
-      <Btnlogin :msg="'Login'" :customClass="'mb-4 w-75 mx-auto'" :customStyle="'height: 80px; font-size:36px'" />
+      <router-link to="/restaurant">
+        <Btnlogin :msg="'Login'" :customClass="'mb-4 w-75 mx-auto'" :customStyle="'height: 80px; font-size:36px'" />
+      </router-link>
     </div>
     <div class="d-flex justify-content-center flex-column">
       <div class="row justify-content-center">
         <span class="options">
           Esqueci minha senha
-          <router-link to="/recover" class="signup">
+          <router-link to="/recover">
             Recuperar
           </router-link>
         </span>
@@ -28,7 +30,7 @@ defineProps<{ msg: string }>();
       <div class="row justify-content-center">
         <span class="options">
           Não possuí uma conta?
-          <router-link to="/client-signUp" class="signup">
+          <router-link to="/client-signUp">
             <span>Cadastre-se</span>
           </router-link>
         </span>
@@ -37,7 +39,7 @@ defineProps<{ msg: string }>();
       <div class="row justify-content-center">
         <span class="options">
           Deseja cadastrar seu restaurante no nosso App?
-          <router-link to="/restaurant-signUp" class="signup">
+          <router-link to="/restaurant-signUp">
             <span>Cadastre-se</span>
           </router-link>
         </span>
@@ -65,10 +67,5 @@ defineProps<{ msg: string }>();
 
 .logo:hover {
   filter: drop-shadow(0 0 2em #d4ad6f);
-}
-
-.signup {
-  color: #0D1B2A;
-  text-decoration: none;
 }
 </style>

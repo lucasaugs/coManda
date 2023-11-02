@@ -2,9 +2,9 @@
 </script>
 
 <template>
-    <div class="tela container">
+    <div class="tela container p-4">
         <router-link to="/login">
-            <div class="w-50 mx-auto">
+            <div class="w-50 mx-auto align-items-center">
                 <img src="../assets/logo-no-background.png" alt="coManda Logo" class="w-75 logo" />
             </div>
         </router-link>
@@ -19,6 +19,6 @@
 }
 
 .logo:hover {
-    filter: drop-shadow(0 0 2em #d4ad6f);
+    filter: drop-shadow(0 0 2em var(--bg-beige));
 }
 </style>
