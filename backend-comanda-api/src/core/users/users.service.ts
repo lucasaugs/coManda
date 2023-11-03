@@ -47,3 +47,14 @@ export const getUser = async (userI: Users) =>{
 
     return retorno as Users | null;
 }
+
+export const loginUser = async(email: string, password: string) => {
+    const retorno = await db.users.findFirst({
+        where: {
+            email: email,
+            password: password,
+        }
+    })
+
+    return retorno as Users | null;
+}

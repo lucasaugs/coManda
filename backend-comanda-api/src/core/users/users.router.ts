@@ -31,3 +31,13 @@ usersRouter.post("/client-signUp", async (req: Request, res: Response) =>{
         return res.status(500).json(e.message);
     }
 });
+
+usersRouter.post("/login", async (req: Request, res: Response) => {
+    try {
+        const usuarioLogin = req.body
+        const users = await usersService.loginUser(usuarioLogin.email, usuarioLogin.password);
+        return res.status(200).json(users);
+    } catch (e: any) {
+        return res.status(500).json(e.message);
+    }
+});
