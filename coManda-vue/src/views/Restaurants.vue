@@ -1,7 +1,7 @@
 <script setup>
 import { AppStore } from "../common/AppStore.js"
 import { onBeforeMount, onBeforeUnmount, ref } from "vue";
-import Btnlogin from "../components/BtnLogin.vue"
+
 onBeforeMount(() => {
     AppStore.showSidebar = true;
 });
@@ -9,22 +9,39 @@ onBeforeUnmount(() => {
     AppStore.showSidebar = false;
 });
 
-const restaurants = ref([{
-    id: 1,
-    name: "Restaurante Sabor da Casa",
-    street: "Rua dos Bobos",
-    neighborhood: "Bairro dos Bobos",
-}])
+const restaurants = ref([
+    {
+        id: 1,
+        name: "Tatu Bola Bar",
+        street: "Av. do Contorno, 6557",
+        neighborhood: "Savassi",
+    },
+    {
+        id: 1,
+        name: "Tatu Bola Bar",
+        street: "Av. do Contorno, 6557",
+        neighborhood: "Savassi",
+    },
+    {
+        id: 1,
+        name: "Tatu Bola Bar",
+        street: "Av. do Contorno, 6557",
+        neighborhood: "Savassi",
+    }
+])
 </script>
 
 <template>
     <div class="restaurant-bg w-100 h-100 p-4">
         <h1 class="row text-start title mb-3">
-            Restaurantes cadastrados
+            Restaurantes próximos
         </h1>
-        <div v-for="restaurant in restaurants" class="row w-50 mx-auto my-2 rounded bg-beige">
-            <span>{{ restaurant.name }}</span>
-        </div>
+        <router-link to="/">
+            <button v-for="restaurant in restaurants" class="row w-50 mx-left my-2 rounded bg-beige">
+                <span style="color: black;">{{ restaurant.name }}</span>
+                <span style="color: black;">{{ restaurant.street }}, {{ restaurant.neighborhood }}</span>
+            </button>
+        </router-link>
     </div>
 </template>
 
