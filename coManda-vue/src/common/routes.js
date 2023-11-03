@@ -6,6 +6,7 @@ import PdfSingUpPage from "../views/PdfSingUpPage.vue";
 import RecoverPage from "../views/RecoverPage.vue";
 import RestaurantPage from "../views/RestaurantPage.vue";
 import Restaurants from "../views/Restaurants.vue";
+import Menu from "../views/Menu.vue";
 
 export const routes = [
   {
@@ -48,4 +49,9 @@ export const routes = [
     component: Restaurants,
     name: "Restaurants",
   },
+  {
+    path: "/restaurant/menu",
+    component: Menu,
+    name: "Menu",
+  }
 ];
