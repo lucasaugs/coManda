@@ -10,19 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  cpf      String   @unique
-  //relations
-  sheetClient sheetClient?
-  //users 1-* splitters
-  splitters splitters[]
-}
 
-model restaurants {
+model restaurant {
   id        Int      @id @default(autoincrement())
   name      String
   email     String   @unique
@@ -44,14 +33,22 @@ model sheetClient {
   total  Int @default(0)
   isOpen Boolean @default(true)
   //relations
-  //user 1-1 sheetClient
-  userId  Int     @unique
-  user    users   @relation(fields: [userId], references: [id])
+  users user[]
   //restaurant 1-* sheetClient
   restaurantId Int     @unique
-  restaurant restaurants   @relation(fields: [restaurantId], references: [id])
-  //sheetClient 1-* sheetItems
-  sheetItems sheetItems[]
+  restaurant restaurant   @relation(fields: [restaurantId], references: [id])
+}
+
+model user {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  cpf      String   @unique
+
+  //relations
+  sheetClient sheetClient[]
+  items item[]
 }
 
 model item {
@@ -60,39 +57,9 @@ model item {
   price Int
   picture String
   //relations
+  users user[]
+
   //restaurant 1-* items
-  restaurantId Int     @unique
-  restaurant restaurants   @relation(fields: [restaurantId], references: [id])
-  //items 1-* sheetItems
-  sheetItems sheetItems[]
+  restaurant restaurant   @relation(fields: [restaurantId], references: [id])
+  restaurantId Int
 }
-
-model sheetItems{
-  id        Int      @id @default(autoincrement())
-  sheetId Int     @unique
-  splittersNum Int
-  //relations
-  //sheetClient 1-* sheetItems
-  sheetClientId Int @unique
-  sheetClient sheetClient @relation(fields: [sheetClientId], references: [id])
-  //items 1-* sheetItems
-  itemId Int     @unique
-  item item @relation(fields: [itemId], references: [id])
-  //sheetItems 1-* splitters
-  splitters splitters[]
-}
-
-//tabela intermediaria para criar relacionamento N x M
-model splitters{
-  //users
-  splitUserId Int
-  user users @relation(fields: [splitUserId], references: [id])
-
-  //sheetItems
-  sheetItemsId Int
-  sheetItems sheetItems @relation(fields: [sheetItemsId], references: [id])
-  
-  @@id([splitUserId, sheetItemsId])
-
-}
-
