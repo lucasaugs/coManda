@@ -56,9 +56,9 @@ O app tem a proposta de facilitar o pedido e divisão de despesas, contando com 
     + Definir os tabelas e referências para os dados dos usuários a serem adicionados, criar endpoints para inserir novas pessoas a uma mesma comanda
   * Criar telas para cadastro de novas pessoas na comanda.
 
-6 - Como dono do restaurante gostaria de editar o cardápio do meu restaurante.
-  * Criar comunicação para editar itens do cardápio
-    + Definir referências para as tabelas que contém os cardápios do restaurante que quer editar
+6 - Como usuário da plataforma, gostaria de visualizar os restaurantes disponíveis.
+  * Criar comunicação para receber informações dos restaurantes
+    + Definir referências para as tabelas que contém dados dos estabelecimentos cadastrados
   * Criar a navegação no frontend
 
 7 - Como usuário eu gostaria de poder dividir o preço do produto que está sendo pedido por um dos integrantes da minha comanda
