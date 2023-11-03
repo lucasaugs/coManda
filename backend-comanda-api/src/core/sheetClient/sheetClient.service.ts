@@ -1,7 +1,8 @@
 
 import { db } from "../../utils/db.server";
-import { getUser, getUserByName } from "../users/users.service";
 import {sheetClient} from "./sheetClientType"
+
+import * as usersService from "../users/users.service";
 
 export const listSheets = async (): Promise<sheetClient[]> => {
 
@@ -32,11 +33,13 @@ export const insertSheet = async(sheetInput: any) => {
 
 export const editSheet = async(sheetInput: any) => {
     const {userId,sheetId,userNames} = sheetInput;
-    let listUsers = [];
+    let listUsers : {id: number}[] = [];
 
     for (let i = 0; i < userNames.length; i++) {
-        const user = await getUserByName(userNames[i]);
-        listUsers.push(user?.id);
+        const user = await usersService.getUserByName(userNames[i]);
+        if(user.id !== undefined){
+            listUsers.push({id: user.id});
+        }
     }
 
 
@@ -45,9 +48,9 @@ export const editSheet = async(sheetInput: any) => {
             id: sheetId,
         },
         data: {
-            total: total,
-            restaurantId: restaurantId,
-            isOpen: isOpen,
+            users: {
+                connect: listUsers,
+            }
         }
     })
 }

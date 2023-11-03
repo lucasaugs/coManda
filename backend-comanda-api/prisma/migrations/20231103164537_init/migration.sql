@@ -11,21 +11,21 @@ CREATE TABLE "restaurant" (
 );
 
 -- CreateTable
-CREATE TABLE "sheetClient" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "total" INTEGER NOT NULL DEFAULT 0,
-    "isOpen" BOOLEAN NOT NULL DEFAULT true,
-    "restaurantId" INTEGER NOT NULL,
-    CONSTRAINT "sheetClient_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "restaurant" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
 CREATE TABLE "user" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "cpf" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "sheetClient" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "total" INTEGER NOT NULL DEFAULT 0,
+    "isOpen" BOOLEAN NOT NULL DEFAULT true,
+    "restaurantId" INTEGER NOT NULL,
+    CONSTRAINT "sheetClient_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "restaurant" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -47,11 +47,11 @@ CREATE TABLE "_sheetClientTouser" (
 );
 
 -- CreateTable
-CREATE TABLE "_itemTouser" (
+CREATE TABLE "_itemTosheetClient" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL,
-    CONSTRAINT "_itemTouser_A_fkey" FOREIGN KEY ("A") REFERENCES "item" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT "_itemTouser_B_fkey" FOREIGN KEY ("B") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT "_itemTosheetClient_A_fkey" FOREIGN KEY ("A") REFERENCES "item" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "_itemTosheetClient_B_fkey" FOREIGN KEY ("B") REFERENCES "sheetClient" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateIndex
@@ -61,13 +61,13 @@ CREATE UNIQUE INDEX "restaurant_email_key" ON "restaurant"("email");
 CREATE UNIQUE INDEX "restaurant_cpf_key" ON "restaurant"("cpf");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "sheetClient_restaurantId_key" ON "sheetClient"("restaurantId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_cpf_key" ON "user"("cpf");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "sheetClient_restaurantId_key" ON "sheetClient"("restaurantId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_sheetClientTouser_AB_unique" ON "_sheetClientTouser"("A", "B");
@@ -76,7 +76,7 @@ CREATE UNIQUE INDEX "_sheetClientTouser_AB_unique" ON "_sheetClientTouser"("A", 
 CREATE INDEX "_sheetClientTouser_B_index" ON "_sheetClientTouser"("B");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_itemTouser_AB_unique" ON "_itemTouser"("A", "B");
+CREATE UNIQUE INDEX "_itemTosheetClient_AB_unique" ON "_itemTosheetClient"("A", "B");
 
 -- CreateIndex
-CREATE INDEX "_itemTouser_B_index" ON "_itemTouser"("B");
+CREATE INDEX "_itemTosheetClient_B_index" ON "_itemTosheetClient"("B");

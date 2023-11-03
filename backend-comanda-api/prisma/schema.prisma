@@ -28,16 +28,6 @@ model restaurant {
   items item[]
 }
 
-model sheetClient {
-  id        Int      @id @default(autoincrement())
-  total  Int @default(0)
-  isOpen Boolean @default(true)
-  //relations
-  users user[]
-  //restaurant 1-* sheetClient
-  restaurantId Int     @unique
-  restaurant restaurant   @relation(fields: [restaurantId], references: [id])
-}
 
 model user {
   id        Int      @id @default(autoincrement())
@@ -48,7 +38,17 @@ model user {
 
   //relations
   sheetClient sheetClient[]
+}
+model sheetClient {
+  id        Int      @id @default(autoincrement())
+  total  Int @default(0)
+  isOpen Boolean @default(true)
+  //relations
+  users user[]
   items item[]
+  //restaurant 1-* sheetClient
+  restaurantId Int     @unique
+  restaurant restaurant   @relation(fields: [restaurantId], references: [id])
 }
 
 model item {
@@ -57,7 +57,7 @@ model item {
   price Int
   picture String
   //relations
-  users user[]
+  sheetClient sheetClient[]
 
   //restaurant 1-* items
   restaurant restaurant   @relation(fields: [restaurantId], references: [id])
