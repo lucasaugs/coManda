@@ -68,3 +68,42 @@ export const loginUser = async(email: string, password: string) => {
 
     return retorno as Users | null;
 }
+
+export const getActiveSheet = async(userId:number) => {
+    const user = await db.user.findFirst({
+        where: {
+            id: userId,
+        },
+        include: {
+            sheetClient: true,
+        }
+    })
+
+    const sheetClientId = user?.sheetClient[0].id;
+
+    let activeSheet = await db.sheetClient.findFirst({
+        where: {
+            id: sheetClientId,
+        },
+        include: {
+            items: true,
+        }
+    })
+
+    if(activeSheet === null || activeSheet === undefined){
+        return;
+    }
+
+    const  dividers = activeSheet?.dividers.split(",");
+
+    if( dividers === undefined){
+        return;
+    }
+
+    for (let i = 0; i < dividers?.length - 1; i++) {
+        const divider = parseInt(dividers[i])
+        activeSheet.items[i].price = (activeSheet?.items[i].price/divider);
+    }
+
+    return activeSheet as any;
+}

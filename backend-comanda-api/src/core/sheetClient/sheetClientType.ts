@@ -4,4 +4,5 @@ export type sheetClient = {
     restaurantId: number;
     total:number;
     isOpen:boolean;
+    dividers:string;
 }

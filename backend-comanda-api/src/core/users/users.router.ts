@@ -16,6 +16,17 @@ usersRouter.get("/", async (req: Request, res: Response) => {
     }
 });
 
+// GET: activeSheet
+usersRouter.get("/activeSheet/:id", async (req: Request, res: Response) => {
+    const id:number = parseInt(req.params.id);
+    try {
+        const users = await usersService.getActiveSheet(id);
+        return res.status(200).json(users);
+    } catch (e: any) {
+        return res.status(500).json(e.message);
+    }
+});
+
 usersRouter.post("/client-signUp", async (req: Request, res: Response) =>{
     try {
         const addUser = req.body;

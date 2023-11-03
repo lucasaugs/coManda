@@ -24,6 +24,7 @@ CREATE TABLE "sheetClient" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "total" INTEGER NOT NULL DEFAULT 0,
     "isOpen" BOOLEAN NOT NULL DEFAULT true,
+    "dividers" TEXT NOT NULL DEFAULT '',
     "restaurantId" INTEGER NOT NULL,
     CONSTRAINT "sheetClient_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "restaurant" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );

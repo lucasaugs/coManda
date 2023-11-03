@@ -6,6 +6,18 @@ import * as sheetClientServices from "./sheetClient.service"
 
 export const sheetClientRouter = express.Router();
 
+// GET: get sheet
+sheetClientRouter.get("/:id", async (req: Request, res: Response) => {
+    const id:number = parseInt(req.params.id);
+    try {
+        const sheet = await sheetClientServices.getSheetById(id);
+        return res.status(200).json(sheet);
+    } catch (e: any) {
+        return res.status(500).json(e.message);
+    }
+});
+
+
 // GET: list all sheets
 sheetClientRouter.get("/", async (req: Request, res: Response) => {
     try {
@@ -28,6 +40,15 @@ sheetClientRouter.post("/create", async (req: Request, res: Response) => {
 sheetClientRouter.put("/edit", async (req: Request, res: Response) => {
     try {
         const sheets = await sheetClientServices.editSheet(req.body);
+        return res.status(200).json(sheets);
+    } catch (e: any) {
+        return res.status(500).json(e.message);
+    }
+});
+
+sheetClientRouter.put("/addItem", async (req: Request, res: Response) => {
+    try {
+        const sheets = await sheetClientServices.addSheetItem(req.body);
         return res.status(200).json(sheets);
     } catch (e: any) {
         return res.status(500).json(e.message);

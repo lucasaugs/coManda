@@ -43,6 +43,7 @@ model sheetClient {
   id        Int      @id @default(autoincrement())
   total  Int @default(0)
   isOpen Boolean @default(true)
+  dividers String @default("")
   //relations
   users user[]
   items item[]

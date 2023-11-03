@@ -1,3 +1,5 @@
+import { sheetClient } from "../sheetClient/sheetClientType";
+
 export type Users = {
     
     id?: number;
@@ -5,6 +7,4 @@ export type Users = {
     password: string;
     cpf: string;
     email: string;
-    //createdAt?: Date;
-    //updatedAt?: Date;    
 }

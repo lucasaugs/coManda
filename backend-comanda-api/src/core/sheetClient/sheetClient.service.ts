@@ -4,6 +4,16 @@ import {sheetClient} from "./sheetClientType"
 
 import * as usersService from "../users/users.service";
 
+export const getSheetById = async (sheetId:number): Promise<sheetClient | null> => {
+
+    return db.sheetClient.findFirst({
+        where : {
+            id: sheetId,
+        }
+    });
+
+}
+
 export const listSheets = async (): Promise<sheetClient[]> => {
 
     return db.sheetClient.findMany({
@@ -14,6 +24,7 @@ export const listSheets = async (): Promise<sheetClient[]> => {
     });
 
 }
+
 
 export const insertSheet = async(sheetInput: any) => {
     const {total, restaurantId,isOpen,userId} = sheetInput;
@@ -50,6 +61,35 @@ export const editSheet = async(sheetInput: any) => {
         data: {
             users: {
                 connect: listUsers,
+            }
+        }
+    })
+}
+
+export const addSheetItem = async(sheetInput: any) => {
+    const {itemId,sheetId,dividers} = sheetInput;
+
+    const sheet = await getSheetById(sheetId);
+    let newDividers= "";
+    
+    if(sheet === null){
+        return;
+    }
+
+    if(sheet){
+        newDividers = sheet.dividers + dividers + ",";
+    }
+
+    return await db.sheetClient.update({
+        where: {
+            id: sheetId,
+        },
+        data: {
+            dividers: newDividers,
+            items: {
+                connect: { 
+                    id: itemId,
+                }
             }
         }
     })
