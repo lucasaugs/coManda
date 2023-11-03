@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BoxInput from "../components/BoxInput.vue"
 import Btnlogin from "../components/BtnLogin.vue"
-defineProps<{ msg: string }>();
 </script>
 
 <template>

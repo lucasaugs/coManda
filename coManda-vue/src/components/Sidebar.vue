@@ -3,7 +3,7 @@ import { AppStore } from "../common/AppStore.js"
 </script>
 
 <template>
-    <div v-if="AppStore.showSidebar" class="d-flex flex-column flex-shrink-0 p-3 text-black col sidebar"
+    <div v-if="AppStore.showSidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white col sidebar"
         style="width: 280px !important;">
         <router-link to="/">
             <div class="w-75 mx-auto">
@@ -13,23 +13,19 @@ import { AppStore } from "../common/AppStore.js"
         <hr style="color: black; border-bottom: 1px solid black;">
         <ul class="nav nav-pills flex-column mb-auto">
             <router-link to="/">
-                <li class="nav-link text-black rounded d-flex justify-content-center align-items-center">
+                <li class="nav-link text-white rounded d-flex justify-content-center align-items-center">
                     <i class="fa-solid fa-house mx-2"></i>
                     Página Inicial
                 </li>
             </router-link>
-        </ul>
-        <ul class="nav nav-pills flex-column mb-auto">
             <router-link to="/">
-                <li class="nav-link text-black rounded d-flex justify-content-center align-items-center">
+                <li class="nav-link text-white rounded d-flex justify-content-center align-items-center">
                     <i class="fa-solid mx-2"></i>
-                    Acessar comanda
+                    Acessar comandas
                 </li>
             </router-link>
-        </ul>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <router-link to="/">
-                <li class="nav-link text-black rounded d-flex justify-content-center align-items-center">
+            <router-link to="/addFriends/1">
+                <li class="nav-link text-white rounded d-flex justify-content-center align-items-center">
                     <i class="fa-solid mx-2"></i>
                     Adicionar amigos
                 </li>
@@ -37,7 +33,7 @@ import { AppStore } from "../common/AppStore.js"
         </ul>
         <ul class="nav nav-pills flex-column">
             <router-link to="/login">
-                <li class="nav-link text-black rounded d-flex justify-content-center align-items-center">
+                <li class="nav-link text-white rounded d-flex justify-content-center align-items-center">
                     <i class="fa-solid fa-arrow-right-from-bracket mx-2"></i>
                     Sair
                 </li>
@@ -65,6 +61,6 @@ import { AppStore } from "../common/AppStore.js"
 
 .nav-link i {
     font-size: 18px;
-    color: black;
+    color: white;
 }
 </style>

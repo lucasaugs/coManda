@@ -2,10 +2,6 @@
 import { AppStore } from "./common/AppStore.js"
 import { onBeforeMount } from "vue";
 import Sidebar from "./components/Sidebar.vue";
-
-onBeforeMount(() => {
-  AppStore.showSidebar = false;
-});
 </script>
 
 <template>
