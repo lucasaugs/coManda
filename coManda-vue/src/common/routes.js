@@ -5,6 +5,7 @@ import RestaurantSingUpPage from "../views/RestaurantSingUpPage.vue";
 import PdfSingUpPage from "../views/PdfSingUpPage.vue";
 import RecoverPage from "../views/RecoverPage.vue";
 import RestaurantPage from "../views/RestaurantPage.vue";
+import Restaurants from "../views/Restaurants.vue";
 
 export const routes = [
   {
@@ -41,5 +42,10 @@ export const routes = [
     path: "/restaurant",
     component: RestaurantPage,
     name: "Restaurant Page",
+  },
+  {
+    path: "/restaurants",
+    component: Restaurants,
+    name: "Restaurants",
   },
 ];

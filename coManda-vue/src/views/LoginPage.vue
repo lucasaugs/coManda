@@ -14,7 +14,7 @@ defineProps<{ msg: string }>();
         type="email" />
       <BoxInput :msg="'Senha'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
         type="password" />
-      <router-link to="/restaurant">
+      <router-link to="/restaurants">
         <Btnlogin :msg="'Login'" :customClass="'mb-4 w-75 mx-auto'" :customStyle="'height: 80px; font-size:36px'" />
       </router-link>
     </div>
