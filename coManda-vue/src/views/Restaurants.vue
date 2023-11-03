@@ -23,6 +23,7 @@ const restaurants = ref([{
             Restaurantes cadastrados
         </h1>
         <div v-for="restaurant in restaurants" class="row w-50 mx-auto my-2 rounded bg-beige">
+            <span>{{ restaurant.name }}</span>
         </div>
     </div>
 </template>
