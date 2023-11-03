@@ -14,40 +14,35 @@ defineProps<{ msg: string }>();
 
     <p style="font-size: 34px; color: #e0e1dd; margin-top: 25px;">CADASTRE SEU ESTABELECIMENTO</p>
 
-    <div class="w-50 mx-auto">
+    <div class="w-20 mx-auto">
       <div class="row justify-content-center">
-        <div class="my-2 p-0 mx-2 col-5">
+        <div class="my-2 p-2 mx-4 col-5">
           <BoxInput :msg="'Email'" :customStyle="'height: 80px;font-size:24px'" type="email" />
         </div>
-        <div class="my-2 p-0 mx-2 col-5">
-          <BoxInput :msg="'Nome do Estabelecimento'" :customStyle="'height: 80px;font-size:24px'" type="text" />
+        <div class="my-2 p-2 mx-4 col-5">
+          <BoxInput :msg="'CNPJ'" :customStyle="'height: 80px;font-size:24px'" type="text" pattern="\d{14}"/>
         </div>
-        <div class="my-2 p-0 mx-2 col-5">
-          <BoxInput :msg="'CNPJ'" :customStyle="'height: 80px;font-size:24px'" type="text" />
+        <div class="my-2 p-2 mx-4 col-5">
+          <BoxInput :msg="'Nome completo'" :customStyle="'height: 80px;font-size:24px'" type="text" />
         </div>
-        <div class="my-2 p-0 mx-2 col-5">
-          <BoxInput :msg="'CEP'" :customStyle="'height: 80px;font-size:24px'" type="text" />
+        <div class="my-2 p-2 mx-4 col-5">
+          <BoxInput :msg="'CEP'" :customStyle="'height: 80px;font-size:24px'" type="text" pattern="\d{8}"/>
         </div>
-        <div class="my-2 p-0 mx-2 col-5">
-          <BoxInput :msg="'Endereço'" :customStyle="'height: 80px;font-size:24px'" type="text" />
+        <div class="my-2 p-2 mx-4 col-5">
+          <BoxInput :msg="'Rua do estabelecimento'" :customStyle="'height: 80px;font-size:24px'" type="text" />
         </div>
-        <div class="my-2 p-0 mx-2 col-5">
-          <BoxInput :msg="'Cidade'" :customStyle="'height: 80px;font-size:24px'" type="text" />
+        <div class="my-2 p-2 mx-4 col-5">
+          <BoxInput :msg="'Bairro do estabelecimento'" :customStyle="'height: 80px;font-size:24px'" type="text" />
         </div>
-        <div class="my-2 p-0 mx-2 col-5">
-          <BoxInput :msg="'Número'" :customStyle="'height: 80px;font-size:24px'" type="text" />
-        </div>
-      </div>
-      <div class="row justify-content-evenly p-0">
-        <div class="my-2 p-0 col mx-2">
+        <div class="my-2 p-2 mx-4 col-5">
           <BoxInput :msg="'Senha'" :customStyle="'height: 80px;font-size:24px'" type="password" />
         </div>
-        <div class="my-2 p-0 col mx-2">
+        <div class="my-2 p-2 mx-4 col-5">
           <BoxInput :msg="'Confirmar senha'" :customStyle="'height: 80px;font-size:24px'" type="password" />
         </div>
       </div>
       <router-link to="/restaurant-signUp/menu">
-        <Btnlogin :msg="'Próximo'" :customClass="'mb-4 w-100 mx-auto'" :customStyle="'height: 80px; font-size:36px'"
+        <Btnlogin :msg="'Próximo'" :customClass="'mb-4 w-50 mx-auto'" :customStyle="'height: 80px; font-size:36px'"
           type="submit" />
       </router-link>
     </div>
