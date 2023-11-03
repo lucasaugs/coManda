@@ -48,7 +48,7 @@ model sheetClient {
   users user[]
   items item[]
   //restaurant 1-* sheetClient
-  restaurantId Int     @unique
+  restaurantId Int
   restaurant restaurant   @relation(fields: [restaurantId], references: [id])
 }
 

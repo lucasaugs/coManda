@@ -28,7 +28,8 @@ export const listSheets = async (): Promise<sheetClient[]> => {
 
 export const insertSheet = async(sheetInput: any) => {
     const {total, restaurantId,isOpen,userId} = sheetInput;
-    await db.sheetClient.create({
+    
+    return await db.sheetClient.create({
         data: {
             total: total,
             restaurantId: restaurantId,
@@ -43,7 +44,7 @@ export const insertSheet = async(sheetInput: any) => {
 }
 
 export const editSheet = async(sheetInput: any) => {
-    const {userId,sheetId,userNames} = sheetInput;
+    const {sheetId,userNames} = sheetInput;
     let listUsers : {id: number}[] = [];
 
     for (let i = 0; i < userNames.length; i++) {
@@ -54,7 +55,7 @@ export const editSheet = async(sheetInput: any) => {
     }
 
 
-    await db.sheetClient.update({
+    return await db.sheetClient.update({
         where: {
             id: sheetId,
         },

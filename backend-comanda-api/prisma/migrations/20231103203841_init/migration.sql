@@ -68,9 +68,6 @@ CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 CREATE UNIQUE INDEX "user_cpf_key" ON "user"("cpf");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "sheetClient_restaurantId_key" ON "sheetClient"("restaurantId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "_sheetClientTouser_AB_unique" ON "_sheetClientTouser"("A", "B");
 
 -- CreateIndex
