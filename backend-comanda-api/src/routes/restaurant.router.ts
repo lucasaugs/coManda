@@ -11,7 +11,7 @@ restaurantRouter.post("/restaurant-signUp", async (req: Request, res: Response) 
         const addRest = req.body;
         const restaurante = new rService.restauranteDB()
 
-        if(restaurante.getRestaurante(addRest.cpf, addRest.email) != null){
+        if(!restaurante.getRestaurante(addRest.cpf, addRest.email)){
             return res.status(500).json("CPF ou e-mail ja utilizado");
         }
 
