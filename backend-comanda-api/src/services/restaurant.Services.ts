@@ -5,7 +5,7 @@ import { Item } from "../core/Item/itemType";
 
 export class restauranteDB implements restauranteRepositorio{
     async inserirRestaurante(restInput: Restaurante){
-        await db.restaurants.create({
+        await db.restaurant.create({
             data: {
                 name: restInput.name,
                 cpf: restInput.cpf,
@@ -19,7 +19,7 @@ export class restauranteDB implements restauranteRepositorio{
     }
 
     async getRestaurante(restCPF: string, restEmail?:string){
-        const retorno = await db.restaurants.findFirst({
+        const retorno = await db.restaurant.findFirst({
             where : {
                 OR: [
                     {
@@ -36,7 +36,7 @@ export class restauranteDB implements restauranteRepositorio{
     }
 
     async listarRestaurantes(): Promise<Restaurante[]>{
-        return db.restaurants.findMany({
+        return db.restaurant.findMany({
             select: {
                 id: true,
                 name: true,

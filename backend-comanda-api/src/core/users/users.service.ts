@@ -1,11 +1,11 @@
-import { restaurants } from "@prisma/client";
+import { restaurant } from "@prisma/client";
 import { db } from "../../utils/db.server";
 import {Users } from "./typesUsers"
 
 
 export const listUsers = async (): Promise<Users[]> => {
 
-    return db.users.findMany({
+    return db.user.findMany({
         select: {
             id: true,
             name: true,
@@ -20,7 +20,7 @@ export const listUsers = async (): Promise<Users[]> => {
 }
 
 export const insertUser = async(userI: Users) => {
-    await db.users.create({
+    await db.user.create({
         data: {
             name: userI.name,
             cpf: userI.cpf,
@@ -31,7 +31,7 @@ export const insertUser = async(userI: Users) => {
 }
 
 export const getUser = async (userI: Users) =>{
-    const retorno = await db.users.findFirst({
+    const retorno = await db.user.findFirst({
         where : {
             OR: [
                 {
@@ -49,7 +49,7 @@ export const getUser = async (userI: Users) =>{
 }
 
 export const loginUser = async(email: string, password: string) => {
-    const retorno = await db.users.findFirst({
+    const retorno = await db.user.findFirst({
         where: {
             email: email,
             password: password,
