@@ -1,6 +1,6 @@
 import { restaurants } from "@prisma/client";
 import { db } from "../../utils/db.server";
-import { Restaurant, Users } from "./typesUsers"
+import { Item, Restaurant, Users } from "./typesUsers"
 
 
 export const listUsers = async (): Promise<Users[]> => {
@@ -33,7 +33,15 @@ export const insertUser = async(userI: Users) => {
 export const getUser = async (userI: Users) =>{
     const retorno = await db.users.findFirst({
         where : {
-            cpf: userI.cpf
+            OR: [
+                {
+                    cpf: userI.cpf,
+                },
+                {
+                    email: userI.email,
+                }
+            ]
+            
         }
     })
 
@@ -42,6 +50,43 @@ export const getUser = async (userI: Users) =>{
 
 export const insertRestaurant = async(restInput: Restaurant) => {
     await db.restaurants.create({
-        data: restInput,
+        data: {
+            name: restInput.name,
+            cpf: restInput.cpf,
+            password: restInput.password,
+            email: restInput.email,
+            cep: restInput.cep,
+            street: restInput.street,
+            neighborhood: restInput.neighborhood
+        }
+    })
+}
+
+export const getRestaurant = async (RestaurantInput: Restaurant) =>{
+    const retorno = await db.restaurants.findFirst({
+        where : {
+            OR: [
+                {
+                    cpf: RestaurantInput.cpf,
+                },
+                {
+                    email: RestaurantInput.email,
+                }
+            ]
+            
+        }
+    })
+
+    return retorno as Restaurant | null;
+}
+
+export const inserirItem = async(novoItem: Item) => {
+    await db.item.create({
+        data: {
+            name: novoItem.name,
+            price: novoItem.price,
+            picture: novoItem.picture,
+            restaurantId: novoItem.restaurantId,
+        }
     })
 }

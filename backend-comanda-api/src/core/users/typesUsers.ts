@@ -1,6 +1,6 @@
 export type Users = {
     
-    id: number;
+    id?: number;
     name: string;
     password: string;
     cpf: string;
@@ -10,7 +10,7 @@ export type Users = {
 }
 
 export type Restaurant = {
-    id: number;
+    id?: number;
     name: string;
     email: string;
     cpf: string;
@@ -18,4 +18,12 @@ export type Restaurant = {
     cep: string;
     street: string;
     neighborhood: string;
+}
+
+export type Item = {
+    id?: number;
+    name: string;
+    price: number;
+    picture: string;
+    restaurantId: number;
 }
