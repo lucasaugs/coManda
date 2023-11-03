@@ -39,13 +39,23 @@ export const getUser = async (userI: Users) =>{
                 },
                 {
                     email: userI.email,
-                }
+                },
             ]
             
         }
     })
 
     return retorno as Users | null;
+}
+
+export const getUserByName = async (userName: string) =>{
+    const retorno = await db.user.findFirst({
+        where : {
+            name: userName,
+        }
+    })
+
+    return retorno as Users;
 }
 
 export const loginUser = async(email: string, password: string) => {

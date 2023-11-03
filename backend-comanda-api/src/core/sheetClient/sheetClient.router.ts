@@ -15,3 +15,21 @@ sheetClientRouter.get("/", async (req: Request, res: Response) => {
         return res.status(500).json(e.message);
     }
 });
+
+sheetClientRouter.post("/create", async (req: Request, res: Response) => {
+    try {
+        const sheets = await sheetClientServices.insertSheet(req.body);
+        return res.status(200).json(sheets);
+    } catch (e: any) {
+        return res.status(500).json(e.message);
+    }
+});
+
+sheetClientRouter.put("/edit", async (req: Request, res: Response) => {
+    try {
+        const sheets = await sheetClientServices.editSheet(req.body);
+        return res.status(200).json(sheets);
+    } catch (e: any) {
+        return res.status(500).json(e.message);
+    }
+});
