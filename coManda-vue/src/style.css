@@ -1,35 +1,37 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Alumni Sans, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --bg-blue: #516aa0;
+  --bg-light-beige: #f8e8d0;
+  --bg-light-beige-hover: #f6d9ac;
+  --bg-beige: #d4ad6f;
+  --bg-light-gray: #c9c9c9;
+  --bg-light-gray-hover: #adadad;
+  --bg-light-gray-transparent: #9c9a9736;
+  --bg-beige-hover: #eb9e22;
+  --opaque-white: #e0e1dd;
+  --bg-dark-blue: #0d1b2a;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: var(--bg-dark-blue) !important;
+  text-decoration: none !important;
+  padding: 0px !important;
 }
 a:hover {
-  color: #535bf2;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  color: var(--bg-beige) !important;
 }
 
 body {
@@ -38,6 +40,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-blue) !important;
+  font-family: Alumni Sans !important;
 }
 
 h1 {
@@ -69,21 +75,23 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.restaurant-bg {
+  background-color: var(--opaque-white);
+}
+
+.title {
+  border-bottom: 1px solid var(--bg-dark-blue);
+  font-size: 2.3rem;
+  height: fit-content;
+  font-weight: 500;
 }

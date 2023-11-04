@@ -1,22 +1,19 @@
 <script setup lang="ts">
 
-defineProps<{ msg: string }>()
+defineProps<{ msg?: string, customClass?: string, customStyle?: string, type?: string }>()
 
 </script>
 
 <template>
-    <p class="input-text">
-        {{ msg }}
-    </p>
+    <input :type="type || 'text'" class="form-control input-text" :placeholder="msg" :class="customClass"
+        :style="customStyle" />
 </template>
 
 <style scoped>
 .input-text {
-    width: 414px;
-    height: 82px;
     flex-shrink: 0;
     border-radius: 8px;
-    border: 1px solid #E0E1DD;
-    background: #E0E1DD;
+    border: 1px solid var(--opaque-white);
+    background: var(--opaque-white);
 }
 </style>
