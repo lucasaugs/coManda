@@ -55,10 +55,10 @@ usersRouter.post("/login", async (req: Request, res: Response) => {
         if(!usuario){
             const restauranteLogin = new restaurantDB();
             const restaurante = await restauranteLogin.loginRestaurant(usuarioLogin.email, usuarioLogin.password);
-            return res.status(200).json(restaurante);
+            return res.status(200).json([2, restaurante]);
         }
 
-        return res.status(200).json(usuario);
+        return res.status(200).json([1, usuario]);
     } catch (e: any) {
         return res.status(500).json(e.message);
     }
