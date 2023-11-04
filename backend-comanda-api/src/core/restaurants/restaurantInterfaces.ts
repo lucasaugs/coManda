@@ -1,10 +1,14 @@
 import { Item } from "../Item/itemType";
-import { Restaurante } from "./restaurantType";
+import { Restaurant } from "./restaurantType";
 
-export interface restauranteRepositorio {
-    getRestaurante(buscaCPF: string): Promise<Restaurante | null>;
-    inserirRestaurante(adicionarRest: Restaurante);
-    inserirItem(adicionarItem: Item);
-    listarRestaurantes(): Promise<Restaurante[]>;
-    loginRestaurante(emailRest: string, senhaRest: string);
+export interface restauranteRepository {
+    getRestaurant(buscaCPF: string): Promise<Restaurant | null>;
+    insertRestaurant(adicionarRest: Restaurant);
+    listRestaurants(): Promise<Restaurant[]>;
+    loginRestaurant(emailRest: string, senhaRest: string);
+
+    insertItem(adicionarItem: Item);
+    editItem(itemEdit: Item);
+    listItemsRest(restId: number);
+    deleteItem(itemId: number);
 }

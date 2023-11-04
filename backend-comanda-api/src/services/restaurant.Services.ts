@@ -1,10 +1,10 @@
 import { db } from "../utils/db.server";
-import { restauranteRepositorio} from "../core/restaurants/restaurantInterfaces"
-import { Restaurante } from "../core/restaurants/restaurantType";
+import { restauranteRepository} from "../core/restaurants/restaurantInterfaces"
+import { Restaurant } from "../core/restaurants/restaurantType";
 import { Item } from "../core/Item/itemType";
 
-export class restauranteDB implements restauranteRepositorio{
-    async inserirRestaurante(restInput: Restaurante){
+export class restaurantDB implements restauranteRepository{
+    async insertRestaurant(restInput: Restaurant){
         await db.restaurant.create({
             data: {
                 name: restInput.name,
@@ -18,7 +18,7 @@ export class restauranteDB implements restauranteRepositorio{
         })
     }
 
-    async getRestaurante(restCPF: string, restEmail?:string){
+    async getRestaurant(restCPF: string, restEmail?:string){
         const retorno = await db.restaurant.findFirst({
             where : {
                 OR: [
@@ -32,10 +32,10 @@ export class restauranteDB implements restauranteRepositorio{
             }
         })
 
-        return retorno as Restaurante | null;
+        return retorno as Restaurant | null;
     }
 
-    async listarRestaurantes(): Promise<Restaurante[]>{
+    async listRestaurants(): Promise<Restaurant[]>{
         return db.restaurant.findMany({
             select: {
                 id: true,
@@ -51,7 +51,7 @@ export class restauranteDB implements restauranteRepositorio{
 
     }
 
-    async inserirItem(adicionarItem: Item){
+    async insertItem(adicionarItem: Item){
         await db.item.create({
             data: {
                 name: adicionarItem.name,
@@ -62,7 +62,44 @@ export class restauranteDB implements restauranteRepositorio{
         })
     }
 
-    async loginRestaurante(emailRest: string, senhaRest: string) {
+    async editItem(itemEdit: Item) {
+        const newItem = await db.item.update({
+            where: {
+                id: itemEdit.id,
+            },
+            data: {
+                name: itemEdit.name,
+                price: itemEdit.price,
+                picture: itemEdit.picture,
+                restaurantId: itemEdit.restaurantId
+            }
+        })
+    }
+
+    async listItemsRest(restId: number) {
+        return await db.item.findMany({
+            where: {
+                restaurantId: restId,
+            },
+            select: {
+                id: true,
+                name: true,
+                price: true,
+                picture: true,
+                restaurantId: true
+            }
+        })
+    }
+
+    async deleteItem(itemId: number) {
+        await db.item.delete({
+            where: {
+                id: itemId,
+            }
+        })
+    }
+
+    async loginRestaurant(emailRest: string, senhaRest: string) {
         const login = await db.restaurant.findFirst({
             where: {
                 email: emailRest,
@@ -71,6 +108,6 @@ export class restauranteDB implements restauranteRepositorio{
         }
         )
 
-        return login as Restaurante | null;
+        return login as Restaurant | null;
     }
 }

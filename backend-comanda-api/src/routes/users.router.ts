@@ -2,7 +2,7 @@ import express from "express";
 import type { Request, Response } from "express";
 
 import { UserDB } from "../services/users.Services";
-import { restauranteDB } from "../services/restaurant.services";
+import { restaurantDB } from "../services/restaurant.services";
 
 export const usersRouter = express.Router();
 
@@ -53,8 +53,8 @@ usersRouter.post("/login", async (req: Request, res: Response) => {
         const usuario = await users.loginUser(usuarioLogin.email, usuarioLogin.password);
         
         if(!usuario){
-            const restauranteLogin = new restauranteDB();
-            const restaurante = await restauranteLogin.loginRestaurante(usuarioLogin.email, usuarioLogin.password);
+            const restauranteLogin = new restaurantDB();
+            const restaurante = await restauranteLogin.loginRestaurant(usuarioLogin.email, usuarioLogin.password);
             return res.status(200).json(restaurante);
         }
 
