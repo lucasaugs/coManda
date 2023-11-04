@@ -13,7 +13,11 @@
   -webkit-text-size-adjust: 100%;
 
   --bg-blue: #516aa0;
+  --bg-light-beige: #f8e8d0;
+  --bg-light-beige-hover: #f6d9ac;
   --bg-beige: #d4ad6f;
+  --bg-light-gray: #c9c9c9;
+  --bg-light-gray-hover: #adadad;
   --bg-light-gray-transparent: #9c9a9736;
   --bg-beige-hover: #eb9e22;
   --opaque-white: #e0e1dd;
@@ -83,4 +87,11 @@ button:focus-visible {
 
 .restaurant-bg {
   background-color: var(--opaque-white);
+}
+
+.title {
+  border-bottom: 1px solid var(--bg-dark-blue);
+  font-size: 2.3rem;
+  height: fit-content;
+  font-weight: 500;
 }

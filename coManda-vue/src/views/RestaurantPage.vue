@@ -59,16 +59,11 @@ const createComanda = () => {
         <div class="mx-auto my-2 row flex-column col-4 ">
             <Btnlogin :msg="'Criar nova comanda'" :customClass="'mb-3 w-100 mx-auto'" :customStyle="`font-size:25px;`"
                 @click="createComanda" />
-            <router-link to="/restaurantMenu">
+            <router-link :to="`/restaurant/${restaurantId}/menu`">
                 <Btnlogin :msg="'Abrir cardápio'" :customClass="'mb-3 w-100 mx-auto'" :customStyle="`font-size:25px;`" />
             </router-link>
         </div>
     </div>
 </template>
 
-<style scoped>
-.title {
-    border-bottom: 1px solid var(--bg-dark-blue);
-    font-size: 2.3rem;
-}
-</style>
+<style scoped></style>

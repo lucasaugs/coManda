@@ -8,6 +8,8 @@ import RestaurantPage from "../views/RestaurantPage.vue";
 import Restaurants from "../views/Restaurants.vue";
 import AddFriends from "../views/AddFriends.vue";
 import Menu from "../views/Menu.vue";
+import MySheets from "../views/MySheets.vue";
+import SheetView from "../views/SheetView.vue";
 
 import { AppStore, updateRestaurantData } from "./AppStore.js";
 
@@ -75,15 +77,27 @@ export const routes = [
     beforeEnter: [showSidebar],
   },
   {
-    path: "/restaurant/menu",
+    path: "/restaurant/:restaurantId/menu",
     component: Menu,
     name: "Menu",
     beforeEnter: [showSidebar],
   },
   {
-    path: "/restaurant/menu",
+    path: "/restaurant/:restaurantId/menu",
     component: Menu,
     name: "Menu",
+    beforeEnter: [showSidebar],
+  },
+  {
+    path: "/mySheets",
+    component: MySheets,
+    name: "MySheets",
+    beforeEnter: [showSidebar],
+  },
+  {
+    path: "/mySheets/:sheetId",
+    component: SheetView,
+    name: "SheetView",
     beforeEnter: [showSidebar],
   },
 ];

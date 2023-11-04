@@ -28,12 +28,6 @@ const restaurants = toRef(AppStore.restaurantData)
 </template>
 
 <style scoped>
-.title {
-    border-bottom: 1px solid var(--bg-dark-blue);
-    font-size: 2.3rem;
-    height: fit-content;
-}
-
 .bg-beige {
     border: 1px solid var(--bg-beige);
     background: var(--bg-beige);
