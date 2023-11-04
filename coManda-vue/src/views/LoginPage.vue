@@ -1,6 +1,29 @@
 <script setup lang="ts">
 import BoxInput from "../components/BoxInput.vue"
 import Btnlogin from "../components/BtnLogin.vue"
+import axios from "axios";
+import { AppStore } from "../common/AppStore.js";
+import { router } from "../router/index.js";
+
+import { ref } from "vue"
+
+const loginInfo = ref({
+  email: "",
+  password: "",
+})
+
+const login = () => {
+  axios.post("http://localhost:3030/api/users/login", loginInfo.value)
+    .then((res) => {
+      if (res.data.length && res.data[1].id) {
+        AppStore.userId = res.data[1].id
+        router.push("/restaurants")
+      }
+    })
+    .catch((err) => {
+      alert("Email ou senha incorretos")
+    })
+}
 </script>
 
 <template>
@@ -9,13 +32,12 @@ import Btnlogin from "../components/BtnLogin.vue"
       <img src="../assets/logo-no-background.png" alt="coManda Logo" class="w-75 logo" />
     </div>
     <div class="w-50 mx-auto">
-      <BoxInput :msg="'Email'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
-        type="email" />
-      <BoxInput :msg="'Senha'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
-        type="password" />
-      <router-link to="/restaurants">
-        <Btnlogin :msg="'Login'" :customClass="'mb-4 w-75 mx-auto'" :customStyle="'height: 80px; font-size:36px'" />
-      </router-link>
+      <BoxInput :placeholder="'Email'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
+        type="email" v-model:value="loginInfo.email" />
+      <BoxInput :placeholder="'Senha'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
+        type="password" v-model:value="loginInfo.password" />
+      <Btnlogin :msg="'Login'" :customClass="'mb-4 w-75 mx-auto'" :customStyle="'height: 80px; font-size:36px'"
+        @click="login" />
     </div>
     <div class="d-flex justify-content-center flex-column">
       <div class="row justify-content-center">

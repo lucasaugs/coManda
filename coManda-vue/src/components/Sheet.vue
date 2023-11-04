@@ -1,6 +1,6 @@
 <script setup>
 import { AppStore } from "../common/AppStore.js"
-import { toRef } from "vue";
+import { toRef, watch } from "vue";
 
 const restaurantData = toRef(AppStore.restaurantData)
 
@@ -15,6 +15,10 @@ const emit = defineEmits(["addProduct"])
 const addProduct = () => {
     emit("addProduct", props.sheet.id)
 }
+
+watch(() => AppStore.restaurantData, () => {
+    restaurantData.value = AppStore.restaurantData
+})
 </script>
 
 <template>
@@ -28,7 +32,7 @@ const addProduct = () => {
             <img src="../assets/only-logo-no-background.png" alt="Logo" class="col-1 " style="width:55px"
                 @click="addProduct">
             <span style="color: black; font-size: 1.5rem;" class="col "
-                v-text="restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId).name"
+                v-text="restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId) && restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId).name"
                 @click="addProduct"></span>
             <router-link :to="`/addFriends/${props.sheet.id}`" v-if="props.addFriends" style="width: fit-content;"
                 class="ms-auto">
@@ -44,7 +48,7 @@ const addProduct = () => {
             </div>
             <img src="../assets/only-logo-no-background.png" alt="Logo" class="col-1 " style="width:55px">
             <span style="color: black; font-size: 1.5rem;" class="col "
-                v-text="restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId).name"></span>
+                v-text="restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId) && restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId).name"></span>
             <div v-if="props.addFriends" style="width: fit-content;" class="ms-auto p-0">
                 <button class=" btn bg-blue rounded " disabled>
                     <i class="fa-solid fa-user-plus"></i>
@@ -60,7 +64,7 @@ const addProduct = () => {
             </div>
             <img src="../assets/only-logo-no-background.png" alt="Logo" class="col-1 " style="width:55px">
             <span style="color: black; font-size: 1.5rem;" class="col-3 "
-                v-text="restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId).name"></span>
+                v-text="restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId) && restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId).name"></span>
             <router-link :to="`/addFriends/${props.sheet.id}`" v-if="props.addFriends" style="width: fit-content;"
                 class="ms-auto">
                 <button class=" btn bg-blue rounded ">
@@ -75,7 +79,7 @@ const addProduct = () => {
             </div>
             <img src="../assets/only-logo-no-background.png" alt="Logo" class="col-1 " style="width:55px">
             <span style="color: black; font-size: 1.5rem;" class="col-3 "
-                v-text="restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId).name"></span>
+                v-text="restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId) && restaurantData.find((restaurant) => restaurant.id == props.sheet.restaurantId).name"></span>
             <div v-if="props.addFriends" style="width: fit-content;" class="ms-auto p-0">
                 <button class=" btn bg-blue rounded " disabled>
                     <i class="fa-solid fa-user-plus"></i>

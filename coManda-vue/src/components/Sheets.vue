@@ -1,6 +1,6 @@
 <script setup>
 import { AppStore } from "../common/AppStore.js"
-import { toRef } from "vue";
+import { toRef, watch } from "vue";
 import Sheet from "../components/Sheet.vue";
 
 const sheetData = toRef(AppStore.sheetData)
@@ -16,6 +16,10 @@ const addProduct = (sheetId) => {
     if (props.addProducts)
         emit("addProduct", sheetId, sheetData.value.length)
 }
+
+watch(() => AppStore.sheetData, () => {
+    sheetData.value = AppStore.sheetData
+})
 </script>
 
 <template>

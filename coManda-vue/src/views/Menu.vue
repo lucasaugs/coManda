@@ -1,11 +1,15 @@
 <script setup>
-import { AppStore } from "../common/AppStore.js"
-import { ref, toRef } from "vue";
+import { AppStore, getRestaurantMenu, updateSheetData } from "../common/AppStore.js"
+import { onMounted, ref, toRef, watch } from "vue";
 import Dialog from 'primevue/dialog';
 import Sheets from "../components/Sheets.vue";
 import axios from "axios";
+import { useRoute } from "vue-router";
 
-const menuData = toRef(AppStore.menudata)
+const route = useRoute();
+const restaurantId = toRef(() => route.params.restaurantId);
+
+const menuData = ref([]);
 const dialogVisible = ref({ itemName: "", restaurantId: "", itemPrice: 0, itemId: -1, visible: false })
 
 const createDialog = (itemId, itemName, restaurantId, itemPrice) => {
@@ -26,24 +30,34 @@ const addProduct = (sheetId, sheetLen) => {
     return;
   }
 
-  // axios.put("localhost:3000/api/sheetClient/addItem",
-  //   {
-  //     sheetId: sheetId,
-  //     itemId: dialogVisible.value.itemId,
-  //     dividers: sheetLen.toString(),
-  //   }).then((response) => {
-  //     console.log(response);
-  //     alert("Produto adicionado com sucesso!");
-  //   }).catch((error) => {
-  //     console.log(error);
-  //     alert("Erro ao adicionar produto!");
-  //   });
+  axios.put("http://localhost:3030/api/sheetClient/addItem",
+    {
+      sheetId: sheetId,
+      itemId: dialogVisible.value.itemId,
+      dividers: sheetLen.toString(),
+    }).then((response) => {
+      console.log(response);
+      alert("Produto adicionado com sucesso!");
+    }).catch((error) => {
+      console.log(error);
+      alert("Erro ao adicionar produto!");
+    });
 }
+
+onMounted(() => {
+  getRestaurantMenu(restaurantId.value)
+  updateSheetData()
+  menuData.value = AppStore.menuData;
+})
+
+watch(() => AppStore.menuData, () => {
+  menuData.value = AppStore.menuData
+})
 </script>
 
 <template>
   <div class="container-full restaurant-bg justify px-5">
-    <div v-for="menu in menuData" class="row w-auto mx-left my-4 rounded">
+    <div v-for="menu in menuData" class="row w-auto mx-left my-4 rounded fz-big">
       <div class="w-auto my-2 col-2">
         <img src="../assets/batata.jpg" alt="Imagem do produto" style="height: 100px;" class="my-3" />
       </div>
@@ -86,5 +100,9 @@ const addProduct = (sheetId, sheetLen) => {
 .btn-beige:hover {
   border: 1px solid var(--bg-beige-hover);
   background-color: var(--bg-beige-hover);
+}
+
+.fz-big {
+  font-size: 1.5rem;
 }
 </style>

@@ -11,7 +11,12 @@ import Menu from "../views/Menu.vue";
 import MySheets from "../views/MySheets.vue";
 import SheetView from "../views/SheetView.vue";
 
-import { AppStore, updateRestaurantData } from "./AppStore.js";
+import {
+  AppStore,
+  updateRestaurantData,
+  updateSheetData,
+  updateUsersData,
+} from "./AppStore.js";
 
 const hideSidebar = () => {
   AppStore.showSidebar = false;
@@ -62,42 +67,41 @@ export const routes = [
     path: "/restaurant/:restaurantId",
     component: RestaurantPage,
     name: "Restaurant Page",
-    beforeEnter: [showSidebar],
+    beforeEnter: [showSidebar, updateRestaurantData],
   },
   {
     path: "/restaurants",
     component: Restaurants,
     name: "Restaurants",
-    beforeEnter: [showSidebar],
+    beforeEnter: [showSidebar, updateRestaurantData],
   },
   {
     path: "/addFriends/:sheetId",
     component: AddFriends,
     name: "AddFriends",
-    beforeEnter: [showSidebar],
+    beforeEnter: [showSidebar, updateRestaurantData, updateUsersData],
   },
   {
     path: "/restaurant/:restaurantId/menu",
     component: Menu,
     name: "Menu",
-    beforeEnter: [showSidebar],
-  },
-  {
-    path: "/restaurant/:restaurantId/menu",
-    component: Menu,
-    name: "Menu",
-    beforeEnter: [showSidebar],
+    beforeEnter: [showSidebar, updateRestaurantData, updateSheetData],
   },
   {
     path: "/mySheets",
     component: MySheets,
     name: "MySheets",
-    beforeEnter: [showSidebar],
+    beforeEnter: [showSidebar, updateSheetData, updateRestaurantData],
   },
   {
     path: "/mySheets/:sheetId",
     component: SheetView,
     name: "SheetView",
-    beforeEnter: [showSidebar],
+    beforeEnter: [
+      showSidebar,
+      updateSheetData,
+      updateRestaurantData,
+      updateUsersData,
+    ],
   },
 ];

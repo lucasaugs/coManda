@@ -1,5 +1,5 @@
 <script setup>
-import { ref, toRef } from "vue";
+import { ref, toRef, watch } from "vue";
 import Btnlogin from "../components/BtnLogin.vue"
 import { useRoute } from 'vue-router';
 import axios from "axios";
@@ -9,10 +9,7 @@ import { AppStore } from "../common/AppStore.js"
 const route = useRoute();
 const restaurantId = toRef(() => route.params.restaurantId);
 
-const restaurantData = ref({
-    name: "Restaurante Sabor da Casa",
-    imgUrl: "../assets/restaurante.jpg",
-})
+const restaurantData = ref(AppStore.restaurantData.find((restaurant) => restaurant.id == parseInt(restaurantId.value)))
 
 
 const createComanda = () => {
@@ -32,21 +29,24 @@ const createComanda = () => {
     if (confirm("Deseja criar uma nova comanda nesse restaurante?") == false) {
         return;
     }
-    // axios.post("localhost:3000/api//sheetClient/create",
-    //     {
-    //         total: 0,
-    //         restaurantId: restaurant_id,
-    //         isOpen: true,
-    //         userId: user_id
-
-    //     }).then((response) => {
-    //         console.log(response);
-    //         alert("Comanda criada com sucesso!");
-    //     }).catch((error) => {
-    //         console.log(error);
-    //         alert("Erro ao criar comanda!");
-    //     });
+    axios.post("http://localhost:3030/api/sheetClient/create",
+        {
+            total: 0,
+            restaurantId: parseInt(restaurant_id),
+            isOpen: true,
+            userId: user_id
+        }).then((response) => {
+            console.log(response);
+            alert("Comanda criada com sucesso!");
+        }).catch((error) => {
+            console.log(error);
+            alert("Erro ao criar comanda!");
+        });
 }
+
+watch(() => route.params.restaurantId, () => {
+    restaurantData.value = AppStore.restaurantData.find((restaurant) => restaurant.id == parseInt(restaurantId.value))
+})
 </script>
 
 <template>

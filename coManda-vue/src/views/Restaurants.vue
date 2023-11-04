@@ -1,5 +1,5 @@
 <script setup>
-import { ref, toRef } from "vue";
+import { ref, toRef, watch } from "vue";
 import { useRoute } from 'vue-router';
 import { AppStore } from "../common/AppStore.js"
 
@@ -7,6 +7,10 @@ const route = useRoute();
 const restaurantId = toRef(() => route.params.restaurantId);
 
 const restaurants = toRef(AppStore.restaurantData)
+
+watch(() => AppStore.restaurantData, () => {
+    restaurants.value = AppStore.restaurantData
+})
 </script>
 
 <template>

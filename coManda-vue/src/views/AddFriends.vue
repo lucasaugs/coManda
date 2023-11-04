@@ -1,6 +1,6 @@
 <script setup>
 import SlimSelect from '@slim-select/vue'
-import { ref, toRef } from "vue";
+import { ref, toRef, watch } from "vue";
 import { useRoute } from 'vue-router';
 import axios from "axios";
 import { AppStore } from "../common/AppStore.js"
@@ -17,6 +17,8 @@ const slimSelectSettings = {
     allowDeselect: true,
     maxValuesShown: 9999,
 };
+
+const userData = toRef(AppStore.usersData)
 
 const insertInSheet = () => {
     var sheet_id = sheetId.value;
@@ -36,18 +38,22 @@ const insertInSheet = () => {
         return;
     }
 
-    // axios.put("localhost:3000/api/sheetClient/addUsers",
-    //     {
-    //         userNames: users,
-    //         sheetId: sheet_id
-    //     }).then((response) => {
-    //         console.log(response);
-    //         alert("Amigos adicionados com sucesso!");
-    //     }).catch((error) => {
-    //         console.log(error);
-    //         alert("Erro ao adicionar amigos!");
-    //     });
+    axios.put("http://localhost:3030/api/sheetClient/edit",
+        {
+            userNames: users,
+            sheetId: parseInt(sheet_id)
+        }).then((response) => {
+            console.log(response);
+            alert("Amigos adicionados com sucesso!");
+        }).catch((error) => {
+            console.log(error);
+            alert("Erro ao adicionar amigos!");
+        });
 }
+
+watch(() => AppStore.usersData, () => {
+    userData.value = AppStore.usersData
+})
 
 </script>
 
@@ -68,7 +74,7 @@ const insertInSheet = () => {
         <div class="d-flex justify-content-center my-2">
             <div class="col-5">
                 <SlimSelect multiple :settings="slimSelectSettings" :style="'font-size:1.3rem'" v-model="insertedUsers">
-                    <option v-for="user in AppStore.usersData" v-text="user.name" :value="user.name"></option>
+                    <option v-for="user in userData" v-text="user.name" :value="user.name"></option>
                 </SlimSelect>
             </div>
         </div>
