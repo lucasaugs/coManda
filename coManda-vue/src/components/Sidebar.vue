@@ -18,16 +18,10 @@ import { AppStore } from "../common/AppStore.js"
                     Página Inicial
                 </li>
             </router-link>
-            <router-link to="/">
+            <router-link to="/mySheets">
                 <li class="nav-link text-white rounded d-flex justify-content-center align-items-center">
                     <i class="fa-solid mx-2"></i>
                     Acessar comandas
-                </li>
-            </router-link>
-            <router-link to="/addFriends/1">
-                <li class="nav-link text-white rounded d-flex justify-content-center align-items-center">
-                    <i class="fa-solid mx-2"></i>
-                    Adicionar amigos
                 </li>
             </router-link>
         </ul>

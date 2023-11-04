@@ -16,13 +16,13 @@ const startStore = {
     },
     {
       id: 2,
-      name: "Tatu Bola Bar",
+      name: "Tatu Bola Bar 2",
       street: "Av. do Contorno, 6557",
       neighborhood: "Savassi",
     },
     {
       id: 3,
-      name: "Tatu Bola Bar",
+      name: "Tatu Bola Bar 3",
       street: "Av. do Contorno, 6557",
       neighborhood: "Savassi",
     },
@@ -43,7 +43,53 @@ const startStore = {
     },
   ],
 
-  sheetData: [],
+  sheetData: [
+    {
+      id: 1,
+      restaurantId: 1,
+      isOpen: true,
+      dividers: "3",
+      total: 10,
+    },
+    {
+      id: 2,
+      restaurantId: 1,
+      isOpen: true,
+      dividers: "1",
+      total: 35.7,
+    },
+    {
+      id: 3,
+      restaurantId: 3,
+      isOpen: false,
+      dividers: "1",
+      total: 35,
+    },
+  ],
+
+  menudata: [
+    {
+      name: "Batata Frita Pequena",
+      price: 6.0,
+      picture: "../assets/batata.jpg",
+      restaurantId: 1,
+      id: 1,
+    },
+    {
+      name: "Batata Frita Média",
+      price: 6.0,
+      picture: "../assets/batata.jpg",
+      restaurantId: 1,
+      id: 2,
+    },
+    {
+      name: "Batata Frita Grande",
+      price: 6.0,
+      picture: "../assets/batata.jpg",
+      restaurantId: 1,
+      id: 3,
+    },
+  ],
 };
 
 export const AppStore = reactive({ ...startStore });
@@ -77,4 +123,28 @@ export const updateSheetData = async () => {
       dividers: res.data.dividers,
     };
   });
+};
+
+export const updateMenuData = async () => {
+  axios.get("localhost:3000/api/menu").then((res) => {
+    AppStore.menudata = {
+      name: res.data.name,
+      price: res.data.price,
+      picture: res.data.picture,
+      restaurantId: res.data.restaurantId,
+    };
+  });
+};
+
+const getRestaurantMenu = async (restaurantId) => {
+  axios
+    .get(`localhost:3000/api/restaurants/${restaurantId}/menu`)
+    .then((res) => {
+      AppStore.menudata = {
+        name: res.data.name,
+        price: res.data.price,
+        picture: res.data.picture,
+        restaurantId: res.data.restaurantId,
+      };
+    });
 };

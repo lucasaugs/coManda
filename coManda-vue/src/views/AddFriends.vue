@@ -52,12 +52,12 @@ const insertInSheet = () => {
 </script>
 
 <template>
-    <div class="restaurant-bg w-100 h-100 p-4">
+    <div class="restaurant-bg w-100 h-100 p-4  ">
         <h1 class="row text-start title mb-3 w-100">
             Adicionar amigos
         </h1>
-        <div class="w-auto my-5" style="height: fit-content;">
-            <i class="fa-solid fa-list-check" style="font-size: 10rem;"></i>
+        <div class="w-50 justify-content-center d-flex mx-auto" style="height: fit-content;">
+            <img src="../assets/only-logo-no-background.png" alt="Logo" class="my-3" style="width: 250px;" />
         </div>
         <div class="text-center w-auto calling ">
             Adicionando pessoass à comanda
@@ -79,7 +79,7 @@ const insertInSheet = () => {
                 </button>
             </div>
             <div class="row col-6 mx-auto ">
-                <router-link to="/">
+                <router-link to="/mySheets">
                     <button class="btn my-2 rounded bg-beige w-100 text-center" style="font-size:25px;">
                         <i class="fa-solid fa-arrow-left mx-2" style="font-size: 18px;"></i>
                         Retornar
@@ -91,12 +91,6 @@ const insertInSheet = () => {
 </template>
 
 <style scoped>
-.title {
-    border-bottom: 1px solid var(--bg-dark-blue);
-    font-size: 2.3rem;
-    height: fit-content;
-}
-
 .calling {
     font-size: 1.5rem;
     color: var(--bg-dark-blue);
