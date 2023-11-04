@@ -75,13 +75,7 @@ export const routes = [
     beforeEnter: [showSidebar],
   },
   {
-    path: "/restaurant/menu",
-    component: Menu,
-    name: "Menu",
-    beforeEnter: [showSidebar],
-  },
-  {
-    path: "/restaurant/menu",
+    path: "/restaurantMenu",
     component: Menu,
     name: "Menu",
     beforeEnter: [showSidebar],
