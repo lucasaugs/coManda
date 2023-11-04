@@ -6,4 +6,5 @@ export interface restauranteRepositorio {
     inserirRestaurante(adicionarRest: Restaurante);
     inserirItem(adicionarItem: Item);
     listarRestaurantes(): Promise<Restaurante[]>;
+    loginRestaurante(emailRest: string, senhaRest: string);
 }

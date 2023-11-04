@@ -61,4 +61,16 @@ export class restauranteDB implements restauranteRepositorio{
             }
         })
     }
+
+    async loginRestaurante(emailRest: string, senhaRest: string) {
+        const login = await db.restaurant.findFirst({
+            where: {
+                email: emailRest,
+                password: senhaRest,
+            }
+        }
+        )
+
+        return login as Restaurante | null;
+    }
 }

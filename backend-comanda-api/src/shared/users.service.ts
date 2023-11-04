@@ -1,6 +1,6 @@
 import { restaurant } from "@prisma/client";
-import { db } from "../../utils/db.server";
-import {Users } from "./typesUsers"
+import { db } from "../utils/db.server";
+import {Users } from "../core/users/usersType"
 
 
 export const listUsers = async (): Promise<Users[]> => {

@@ -1,8 +1,7 @@
 import express from "express"
 import type { Request, Response } from "express"
-import {body, validationResult} from "express-validator"
 
-import * as sheetClientServices from "./sheetClient.service"
+import { sheetClientDB } from "../services/sheetClient.services"
 
 export const sheetClientRouter = express.Router();
 
@@ -10,7 +9,8 @@ export const sheetClientRouter = express.Router();
 sheetClientRouter.get("/:id", async (req: Request, res: Response) => {
     const id:number = parseInt(req.params.id);
     try {
-        const sheet = await sheetClientServices.getSheetById(id);
+        const searchSheets = new sheetClientDB();
+        const sheet = await searchSheets.getSheetById(id);
         return res.status(200).json(sheet);
     } catch (e: any) {
         return res.status(500).json(e.message);
@@ -21,7 +21,8 @@ sheetClientRouter.get("/:id", async (req: Request, res: Response) => {
 // GET: list all sheets
 sheetClientRouter.get("/", async (req: Request, res: Response) => {
     try {
-        const users = await sheetClientServices.listSheets();
+        const searchSheets = new sheetClientDB();
+        const users = await searchSheets.listSheets();
         return res.status(200).json(users);
     } catch (e: any) {
         return res.status(500).json(e.message);
@@ -30,7 +31,8 @@ sheetClientRouter.get("/", async (req: Request, res: Response) => {
 
 sheetClientRouter.post("/create", async (req: Request, res: Response) => {
     try {
-        const sheets = await sheetClientServices.insertSheet(req.body);
+        const addSheet = new sheetClientDB();
+        const sheets = await addSheet.insertSheet(req.body);
         return res.status(200).json(sheets);
     } catch (e: any) {
         return res.status(500).json(e.message);
@@ -39,7 +41,8 @@ sheetClientRouter.post("/create", async (req: Request, res: Response) => {
 
 sheetClientRouter.put("/edit", async (req: Request, res: Response) => {
     try {
-        const sheets = await sheetClientServices.editSheet(req.body);
+        const edit = new sheetClientDB();
+        const sheets = await edit.editSheet(req.body);
         return res.status(200).json(sheets);
     } catch (e: any) {
         return res.status(500).json(e.message);
@@ -48,7 +51,8 @@ sheetClientRouter.put("/edit", async (req: Request, res: Response) => {
 
 sheetClientRouter.put("/addItem", async (req: Request, res: Response) => {
     try {
-        const sheets = await sheetClientServices.addSheetItem(req.body);
+        const addItem = new sheetClientDB()
+        const sheets = await addItem.addSheetItem(req.body);
         return res.status(200).json(sheets);
     } catch (e: any) {
         return res.status(500).json(e.message);

@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import { usersRouter } from './core/users/users.router';
+import { usersRouter } from './routes/users.router';
 import { restaurantRouter } from './routes/restaurant.router';
-import { sheetClientRouter } from './core/sheetClient/sheetClient.router';
+import { sheetClientRouter } from './routes/sheetClient.router';
 
 dotenv.config();
 

@@ -1,8 +1,7 @@
-
 import { db } from "../../utils/db.server";
 import {sheetClient} from "./sheetClientType"
 
-import * as usersService from "../users/users.service";
+import * as usersService from "../../shared/users.service";
 
 export const getSheetById = async (sheetId:number): Promise<sheetClient | null> => {
 

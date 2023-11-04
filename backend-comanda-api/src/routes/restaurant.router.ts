@@ -2,7 +2,7 @@ import express from "express";
 import type { Request, Response } from "express"
 import { restaurant } from "@prisma/client";
 
-import * as rService from "../services/restaurant.Services"
+import * as rService from "../services/restaurant.services"
 
 export const restaurantRouter = express.Router();
 
