@@ -51,6 +51,16 @@ export class restaurantDB implements restauranteRepository{
 
     }
 
+    async getItemRest(itemId: number){
+        const retorno = await db.item.findFirst({
+            where : {
+                id: itemId
+            }
+        })
+
+        return retorno as Item | null;
+    }
+
     async insertItem(adicionarItem: Item){
         await db.item.create({
             data: {
@@ -62,10 +72,10 @@ export class restaurantDB implements restauranteRepository{
         })
     }
 
-    async editItem(itemEdit: Item) {
+    async editItem(itemId:number, itemEdit: Item) {
         const newItem = await db.item.update({
             where: {
-                id: itemEdit.id,
+                id: itemId,
             },
             data: {
                 name: itemEdit.name,

@@ -32,7 +32,7 @@ restaurantRouter.get("/", async (req: Request, res: Response) => {
 });
 
 //OBS: verificar como sera para adicionar
-restaurantRouter.post("/:id/user/adicionarItem", async (req: Request, res: Response) => {
+restaurantRouter.post("/:id/user/additem", async (req: Request, res: Response) => {
     try {
         const addItem = req.body;
         const item = new rService.restaurantDB();
@@ -42,13 +42,25 @@ restaurantRouter.post("/:id/user/adicionarItem", async (req: Request, res: Respo
     }
 })
 
+restaurantRouter.get("/:id/user/items/:itemId", async (req: Request, res: Response) => {
+    const itemId:number = parseInt(req.params.itemId);
+    try {
+        const editItem = new rService.restaurantDB();
+        const item = await editItem.getItemRest(itemId);
+        return res.status(200).json(item);
+    } catch (e: any) {
+        return res.status(500).json(e.message);
+    }
+});
+
 //PUT: Edit items - RESTAURANT/USER -> Quando o restaurante faz login
 //Pode modificar para bater com o front
-restaurantRouter.put("/:id/user/items", async (req: Request, res: Response) => {
+restaurantRouter.put("/:id/user/items/:itemId", async (req: Request, res: Response) => {
+    const itemId:number = parseInt(req.params.itemId);
     const newItem: Item = req.body;
     try {
         const editItem = new rService.restaurantDB();
-        const item = await editItem.editItem(newItem);
+        const item = await editItem.editItem(itemId, newItem);
         return res.status(200).json(item);
     } catch (e: any) {
         return res.status(500).json(e.message);

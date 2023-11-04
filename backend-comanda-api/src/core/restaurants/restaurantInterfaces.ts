@@ -8,7 +8,8 @@ export interface restauranteRepository {
     loginRestaurant(emailRest: string, senhaRest: string);
 
     insertItem(adicionarItem: Item);
-    editItem(itemEdit: Item);
+    editItem(itemId:number, itemEdit: Item);
     listItemsRest(restId: number);
     deleteItem(itemId: number);
+    getItemRest(itemId: number);
 }
