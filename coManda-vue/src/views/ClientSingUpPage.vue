@@ -22,8 +22,8 @@ import Btnlogin from "../components/BtnLogin.vue"
         type="password" />
       <BoxInput :placeholder="'Confirmar senha'" :customClass="'my-4 w-75 mx-auto'"
         :customStyle="'height: 80px;font-size:24px'" type="password" />
-      <Btnlogin :placeholder="'Cadastrar'" :customClass="'mb-4 w-75 mx-auto'"
-        :customStyle="'height: 80px; font-size:36px'" type="submit" />
+      <Btnlogin :msg="'Cadastrar'" :customClass="'mb-4 w-75 mx-auto'" :customStyle="'height: 80px; font-size:36px'"
+        type="submit" />
     </div>
   </div>
 </template>

@@ -41,8 +41,8 @@ import Btnlogin from "../components/BtnLogin.vue"
         </div>
       </div>
       <router-link to="/restaurant-signUp/menu">
-        <Btnlogin :placeholder="'Próximo'" :customClass="'mb-4 w-50 mx-auto'"
-          :customStyle="'height: 80px; font-size:36px'" type="submit" />
+        <Btnlogin :msg="'Próximo'" :customClass="'mb-4 w-50 mx-auto'" :customStyle="'height: 80px; font-size:36px'"
+          type="submit" />
       </router-link>
     </div>
   </div>
