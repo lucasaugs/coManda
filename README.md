@@ -70,3 +70,16 @@ O app tem a proposta de facilitar o pedido e divisão de despesas, contando com 
   * Criar comunicação à lista/tabela de itens
     + Definir referências para as tabelas de itens de cada usuário e retornar a soma dos valores
   * Criar tela no frontend, para cada usuário e sua comanda, e do grupo.
+
+
+### Arquitetura hexagonal
+O principio da arquitetura hexagonal é separar a regra de negócio das tecnologias utilizadas. As tecnologias vão se comunicar com as regras através de portas.
+
+
+No nosso sistema as regras de negócio e as portas estão definidas na pasta core. Dentro dela temos as entidades (nome das pastas e nome das tabelas no banco) que são: restaurant, sheetClient, user. Elas se relacionam aos dois tipos de usuário que temos no sistema (Restaurante e Cliente) e à parte principal que é a comanda compartilhada (sheetClient).
+
+
+Junto às entidades temos as interfaces, que são as portas do nosso sistema. Toda tecnologia que quer ser integrada ao sistema deve implementar essas funcionalidades que são especificas das regras de negocio das entidades. Na entidade usuário, por exemplo, uma tecnologia deve ser capaz de logar o usuário. Dessa forma, quando formos acrescentar uma tecnologia ela deve, apenas, implementar essas interfaces corretamente.
+
+
+Por último, temos os adaptadores, que estão localizados nas pastas services e routes, eles implementam as funções descritas na interface usando o nosso banco de dados. As tecnologias escolhidas foram nodejs, express e o prisma. O banco de dados utilizado foi o sqlite
