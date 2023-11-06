@@ -69,6 +69,7 @@ export const getRestaurantMenu = async (restaurantId) => {
           price: item.price,
           picture: item.picture,
           restaurantId: item.restaurantId,
+          id: item.id,
         };
       });
     })
