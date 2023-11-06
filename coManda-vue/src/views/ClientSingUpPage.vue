@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BoxInput from "../components/BoxInput.vue"
 import Btnlogin from "../components/BtnLogin.vue"
-defineProps<{ msg: string }>();
 </script>
     
 <template>
@@ -13,18 +12,18 @@ defineProps<{ msg: string }>();
     </router-link>
     <p style="font-size: 34px; color: #e0e1dd;">CADASTRE-SE</p>
     <div class="w-50 mx-auto">
-      <BoxInput :msg="'Email'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
+      <BoxInput :placeholder="'Email'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
         type="email" />
-      <BoxInput :msg="'Nome Completo'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
-        type="text" />
-      <BoxInput :msg="'CPF'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'" type="text"
-        pattern="\d{11}" />
-      <BoxInput :msg="'Senha'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
+      <BoxInput :placeholder="'Nome Completo'" :customClass="'my-4 w-75 mx-auto'"
+        :customStyle="'height: 80px;font-size:24px'" type="text" />
+      <BoxInput :placeholder="'CPF'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
+        type="text" pattern="\d{11}" />
+      <BoxInput :placeholder="'Senha'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
         type="password" />
-      <BoxInput :msg="'Confirmar senha'" :customClass="'my-4 w-75 mx-auto'" :customStyle="'height: 80px;font-size:24px'"
-        type="password" />
-      <Btnlogin :msg="'Cadastrar'" :customClass="'mb-4 w-75 mx-auto'" :customStyle="'height: 80px; font-size:36px'"
-        type="submit" />
+      <BoxInput :placeholder="'Confirmar senha'" :customClass="'my-4 w-75 mx-auto'"
+        :customStyle="'height: 80px;font-size:24px'" type="password" />
+      <Btnlogin :placeholder="'Cadastrar'" :customClass="'mb-4 w-75 mx-auto'"
+        :customStyle="'height: 80px; font-size:36px'" type="submit" />
     </div>
   </div>
 </template>
