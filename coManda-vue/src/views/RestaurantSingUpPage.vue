@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BoxInput from "../components/BoxInput.vue"
 import Btnlogin from "../components/BtnLogin.vue"
-defineProps<{ msg: string }>();
 </script>
     
 <template>
@@ -17,33 +16,33 @@ defineProps<{ msg: string }>();
     <div class="w-20 mx-auto">
       <div class="row justify-content-center">
         <div class="my-2 p-2 mx-4 col-5">
-          <BoxInput :msg="'Email'" :customStyle="'height: 80px;font-size:24px'" type="email" />
+          <BoxInput :placeholder="'Email'" :customStyle="'height: 80px;font-size:24px'" type="email" />
         </div>
         <div class="my-2 p-2 mx-4 col-5">
-          <BoxInput :msg="'CNPJ'" :customStyle="'height: 80px;font-size:24px'" type="text" pattern="\d{14}"/>
+          <BoxInput :placeholder="'CNPJ'" :customStyle="'height: 80px;font-size:24px'" type="text" pattern="\d{14}" />
         </div>
         <div class="my-2 p-2 mx-4 col-5">
-          <BoxInput :msg="'Nome completo'" :customStyle="'height: 80px;font-size:24px'" type="text" />
+          <BoxInput :placeholder="'Nome completo'" :customStyle="'height: 80px;font-size:24px'" type="text" />
         </div>
         <div class="my-2 p-2 mx-4 col-5">
-          <BoxInput :msg="'CEP'" :customStyle="'height: 80px;font-size:24px'" type="text" pattern="\d{8}"/>
+          <BoxInput :placeholder="'CEP'" :customStyle="'height: 80px;font-size:24px'" type="text" pattern="\d{8}" />
         </div>
         <div class="my-2 p-2 mx-4 col-5">
-          <BoxInput :msg="'Rua do estabelecimento'" :customStyle="'height: 80px;font-size:24px'" type="text" />
+          <BoxInput :placeholder="'Rua do estabelecimento'" :customStyle="'height: 80px;font-size:24px'" type="text" />
         </div>
         <div class="my-2 p-2 mx-4 col-5">
-          <BoxInput :msg="'Bairro do estabelecimento'" :customStyle="'height: 80px;font-size:24px'" type="text" />
+          <BoxInput :placeholder="'Bairro do estabelecimento'" :customStyle="'height: 80px;font-size:24px'" type="text" />
         </div>
         <div class="my-2 p-2 mx-4 col-5">
-          <BoxInput :msg="'Senha'" :customStyle="'height: 80px;font-size:24px'" type="password" />
+          <BoxInput :placeholder="'Senha'" :customStyle="'height: 80px;font-size:24px'" type="password" />
         </div>
         <div class="my-2 p-2 mx-4 col-5">
-          <BoxInput :msg="'Confirmar senha'" :customStyle="'height: 80px;font-size:24px'" type="password" />
+          <BoxInput :placeholder="'Confirmar senha'" :customStyle="'height: 80px;font-size:24px'" type="password" />
         </div>
       </div>
       <router-link to="/restaurant-signUp/menu">
-        <Btnlogin :msg="'Próximo'" :customClass="'mb-4 w-50 mx-auto'" :customStyle="'height: 80px; font-size:36px'"
-          type="submit" />
+        <Btnlogin :placeholder="'Próximo'" :customClass="'mb-4 w-50 mx-auto'"
+          :customStyle="'height: 80px; font-size:36px'" type="submit" />
       </router-link>
     </div>
   </div>
