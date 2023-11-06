@@ -61,9 +61,9 @@ O app tem a proposta de facilitar o pedido e divisão de despesas, contando com 
     + Definir referências para as tabelas que contém dados dos estabelecimentos cadastrados
   * Criar a navegação no frontend
 
-7 - Como usuário eu gostaria de poder dividir o preço do produto que está sendo pedido por um dos integrantes da minha comanda
+7 - Como usuário eu gostaria de poder dividir o preço da comanda com os integrantes dela
   * Criar comunicação para gerenciamento de itens
-    + Definir referências à tabelas dos grupos e itens na comanda de cada e criar endpoints para selecionar uma outra pessoa e dividir um item com ela.
+    + Definir referências à tabelas dos grupos e itens na comanda de cada e criar endpoints para selecionar uma outra pessoa e dividir o valor com ela.
   * Criar telas para navegação no front e confirmação
 
 8 - Como usuário eu gostaria de poder visualizar os produtos que já estão na comanda bem como o total que eu terei que pagar até o momento.
