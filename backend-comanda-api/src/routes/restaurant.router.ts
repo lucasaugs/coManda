@@ -1,6 +1,5 @@
 import express from "express";
 import type { Request, Response } from "express"
-import { restaurant } from "@prisma/client";
 
 import * as rService from "../services/restaurant.services"
 import { Item } from "../core/Item/itemType";

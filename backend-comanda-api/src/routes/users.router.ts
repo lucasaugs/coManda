@@ -1,7 +1,7 @@
 import express from "express";
 import type { Request, Response } from "express";
 
-import { UserDB } from "../services/users.Services";
+import { UserDB } from "../services/users.services";
 import { restaurantDB } from "../services/restaurant.services";
 
 export const usersRouter = express.Router();

@@ -1,7 +1,7 @@
 import { db } from "../utils/db.server";
 import { sheetClient } from "../core/sheetClient/sheetClientType";
 
-import { UserDB } from "./users.Services";
+import { UserDB } from "./users.services";
 import { sheetClientRepository } from "../core/sheetClient/sheetClientInterface";
 
 export class sheetClientDB implements sheetClientRepository{    
