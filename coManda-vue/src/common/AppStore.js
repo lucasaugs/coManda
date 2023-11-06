@@ -55,23 +55,26 @@ export const updateSheetData = async () => {
         restaurantId: item.restaurantId,
         isOpen: item.isOpen,
         dividers: item.dividers,
+        users: item.users,
       };
     });
   });
 };
 
 export const updateSheetItemsData = async (sheetId) => {
-  await axios.get(`http://localhost:3030/api/sheetClient/${sheetId}`)
-  .then((res) => {
-    AppStore.sheetItemsData = res.data.items.map((item) => {
-      return {
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        picture: item.picture,
-        restaurantId: item.restaurantId,
-      };
-    })});
+  await axios
+    .get(`http://localhost:3030/api/sheetClient/${sheetId}`)
+    .then((res) => {
+      AppStore.sheetItemsData = res.data.items.map((item) => {
+        return {
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          picture: item.picture,
+          restaurantId: item.restaurantId,
+        };
+      });
+    });
 };
 
 export const getRestaurantMenu = async (restaurantId) => {

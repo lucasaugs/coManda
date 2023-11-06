@@ -22,11 +22,12 @@ const createDialog = (itemId, itemName, restaurantId, itemPrice) => {
 }
 
 const addProduct = (sheetId) => {
-  if (!sheetId || !userData.value.length || !dialogVisible.value.itemId) {
+  if (!sheetId || !dialogVisible.value.itemId) {
     alert("Erro ao adicionar produto!");
     return;
   }
 
+  var dividers = AppStore.sheetData.find((sheet) => sheet.id == sheetId).users.length.toString()
   if (confirm("Deseja adicionar esse produto à comanda?") == false) {
     return;
   }
@@ -35,7 +36,7 @@ const addProduct = (sheetId) => {
     {
       sheetId: sheetId,
       itemId: dialogVisible.value.itemId,
-      dividers: userData.value.length.toString(),
+      dividers: dividers,
       price: dialogVisible.value.itemPrice
     }).then((response) => {
       console.log(response);
