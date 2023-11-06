@@ -62,21 +62,20 @@ export const updateSheetData = async () => {
 
 export const updateSheetItemsData = async (sheetId) => {
   console.log(sheetId);
-  await axios.get(`http://localhost:3030/api/sheetClient/${sheetId}`).then((res) => {
-    console.log("entrei");
-    if (!res.data.length) return;
-    console.log("res.data",res.data);
-    console.log(res.data);
-    AppStore.sheetItemsData = res.data.items.map((item) => {
-      return {
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        picture: item.picture,
-        restaurantId: item.restaurantId,
-      };
+  await axios
+    .get(`http://localhost:3030/api/sheetClient/${sheetId}`)
+    .then((res) => {
+      if (!res.data) return;
+      AppStore.sheetItemsData = res.data.items.map((item) => {
+        return {
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          picture: item.picture,
+          restaurantId: item.restaurantId,
+        };
+      });
     });
-  });
 };
 
 export const getRestaurantMenu = async (restaurantId) => {
