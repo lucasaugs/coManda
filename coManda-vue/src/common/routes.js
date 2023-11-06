@@ -85,7 +85,12 @@ export const routes = [
     path: "/restaurant/:restaurantId/menu",
     component: Menu,
     name: "Menu",
-    beforeEnter: [showSidebar, updateRestaurantData, updateSheetData],
+    beforeEnter: [
+      showSidebar,
+      updateRestaurantData,
+      updateSheetData,
+      updateUsersData,
+    ],
   },
   {
     path: "/mySheets",

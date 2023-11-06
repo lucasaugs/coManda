@@ -11,6 +11,7 @@ const restaurantId = toRef(() => route.params.restaurantId);
 
 const menuData = ref([]);
 const dialogVisible = ref({ itemName: "", restaurantId: "", itemPrice: 0, itemId: -1, visible: false })
+const userData = toRef(AppStore.usersData)
 
 const createDialog = (itemId, itemName, restaurantId, itemPrice) => {
   dialogVisible.value.itemName = itemName;
@@ -20,8 +21,8 @@ const createDialog = (itemId, itemName, restaurantId, itemPrice) => {
   dialogVisible.value.visible = true;
 }
 
-const addProduct = (sheetId, sheetLen) => {
-  if (!sheetId || !sheetLen || !dialogVisible.value.itemId) {
+const addProduct = (sheetId) => {
+  if (!sheetId || !userData.value.length || !dialogVisible.value.itemId) {
     alert("Erro ao adicionar produto!");
     return;
   }
@@ -34,7 +35,8 @@ const addProduct = (sheetId, sheetLen) => {
     {
       sheetId: sheetId,
       itemId: dialogVisible.value.itemId,
-      dividers: sheetLen.toString(),
+      dividers: userData.value.length.toString(),
+      price: dialogVisible.value.itemPrice
     }).then((response) => {
       console.log(response);
       alert("Produto adicionado com sucesso!");
@@ -48,10 +50,12 @@ onMounted(() => {
   getRestaurantMenu(restaurantId.value)
   updateSheetData()
   menuData.value = AppStore.menuData;
+  userData.value = AppStore.usersData;
 })
 
-watch(() => AppStore.menuData, () => {
-  menuData.value = AppStore.menuData
+watch(() => [AppStore.menuData, AppStore.usersData], () => {
+  menuData.value = AppStore.menuData;
+  userData.value = AppStore.usersData;
 })
 </script>
 

@@ -14,7 +14,7 @@ const emit = defineEmits(["addProduct"])
 
 const addProduct = (sheetId) => {
     if (props.addProducts)
-        emit("addProduct", sheetId, sheetData.value.length)
+        emit("addProduct", sheetId)
 }
 
 watch(() => AppStore.sheetData, () => {
