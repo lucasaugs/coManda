@@ -12,7 +12,7 @@ import { AppStore } from "../common/AppStore.js"
         </router-link>
         <hr style="color: black; border-bottom: 1px solid black;">
         <ul class="nav nav-pills flex-column mb-auto">
-            <router-link to="/">
+            <router-link to="/restaurants">
                 <li class="nav-link text-white rounded d-flex justify-content-center align-items-center">
                     <i class="fa-solid fa-house mx-2"></i>
                     Página Inicial
