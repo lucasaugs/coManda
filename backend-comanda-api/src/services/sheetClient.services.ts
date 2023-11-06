@@ -7,12 +7,32 @@ import { sheetClientRepository } from "../core/sheetClient/sheetClientInterface"
 export class sheetClientDB implements sheetClientRepository{    
     async getSheetById(sheetId:number): Promise<sheetClient | null>{
 
-        return db.sheetClient.findFirst({
+        const sheetInfo = await db.sheetClient.findFirst({
             where : {
                 id: sheetId,
+            },
+            include: {
+                users: true,
+                items: true
             }
         });
+        if(sheetInfo === null || sheetInfo === undefined){
+            return null;
+        }
+        
+        const  dividers = sheetInfo?.dividers.split(",");
 
+        if( dividers === undefined){
+            return null;
+        }
+
+        for (let i = 0; i < dividers?.length - 1; i++) {
+            const divider = parseInt(dividers[i])
+            sheetInfo.items[i].price = (sheetInfo.items[i].price/divider)
+            sheetInfo.total = sheetInfo.total + sheetInfo.items[i].price
+        }
+
+        return sheetInfo
     }
 
     async listSheets(): Promise<sheetClient[]>{
