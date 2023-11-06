@@ -13,6 +13,8 @@ const startStore = {
 
   sheetData: [],
 
+  sheetItemsData: [],
+
   menuData: [],
 };
 
@@ -53,6 +55,25 @@ export const updateSheetData = async () => {
         restaurantId: item.restaurantId,
         isOpen: item.isOpen,
         dividers: item.dividers,
+      };
+    });
+  });
+};
+
+export const updateSheetItemsData = async (sheetId) => {
+  console.log(sheetId);
+  await axios.get(`http://localhost:3030/api/sheetClient/${sheetId}`).then((res) => {
+    console.log("entrei");
+    if (!res.data.length) return;
+    console.log("res.data",res.data);
+    console.log(res.data);
+    AppStore.sheetItemsData = res.data.items.map((item) => {
+      return {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        picture: item.picture,
+        restaurantId: item.restaurantId,
       };
     });
   });

@@ -1,13 +1,21 @@
 <script setup>
-import { AppStore } from "../common/AppStore.js"
-import { toRef, ref } from "vue";
+import { AppStore, updateSheetItemsData } from "../common/AppStore.js"
+import { toRef, ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 const sheetId = toRef(() => route.params.sheetId);
 
 const sheetData = toRef(AppStore.sheetData.find((sheet) => sheet.id == sheetId.value))
+const sheetItemsData = ref([])
 const restaurantData = toRef(AppStore.restaurantData.find((restaurant) => restaurant.id == sheetData.value.restaurantId))
+
+onMounted(async () => {
+    await updateSheetItemsData(sheetId.value);
+    sheetItemsData.value = AppStore.sheetItemsData;
+})
+
+watch(()=> AppStore.sheetItemsData, () => {sheetItemsData.value = AppStore.sheetItemsData });
 
 const sheetItems = ref([
     {
@@ -45,7 +53,7 @@ const sheetItems = ref([
                     Preço
                 </div>
             </div>
-            <div v-for="item in sheetItems"
+            <div v-for="item in sheetItemsData"
                 class=" my-2 row d-flex align-items-center px-3 py-2 justify-content-around pe-5">
                 <div class="my-2 col-2">
                     <img src="../assets/batata.jpg" alt="Imagem do produto" style="height: 100px;" class="my-3" />
@@ -72,7 +80,7 @@ const sheetItems = ref([
                 <div class="my-2 col-4 d-flex align-items-center">
                 </div>
                 <div class="my-2 col-4 d-flex align-items-center justify-content-end ">
-                    R$ {{ sheetItems.reduce((acc, item) => acc + item.price, 0).toFixed(2) }}
+                    R$ {{ sheetItemsData.reduce((acc, item) => acc + item.price, 0).toFixed(2) }}
                 </div>
             </div>
         </div>
